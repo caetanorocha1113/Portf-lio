@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Natureza | Caetano Rocha</title>
+    
+    <link rel="icon" type="image/png" href="logo.png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="crt-overlay"></div>
+    <div id="ponto"></div>
+    <div id="rastro"></div>
+    <div id="ruido"></div>
+    <div id="fundo-decorativo"></div>
+
+    <div class="marca-dagua-brasao">
+        <svg class="brasao-svg" viewBox="0 0 100 100">
+            <g class="grupo-pedaco g-base">
+                <polygon class="pedaco" points="50,30 70,40 70,60 50,70 30,60 30,40" fill="none" stroke-width="2"/>
+                <circle class="pedaco p-no" cx="50" cy="50" r="5"/>
+            </g>
+            <g class="grupo-pedaco g-topo">
+                <circle class="pedaco" cx="50" cy="50" r="35" fill="none" stroke-dasharray="5,5"/>
+                <circle class="pedaco p-no" cx="85" cy="50" r="3"/>
+                <circle class="pedaco p-no" cx="15" cy="50" r="3"/>
+                <circle class="pedaco p-no" cx="50" cy="15" r="3"/>
+                <circle class="pedaco p-no" cx="50" cy="85" r="3"/>
+            </g>
+        </svg>
+    </div>
+
+    <header>
+        <a href="index.html" class="logo-box link-mag">
+            <svg class="logo-svg" viewBox="0 0 100 100">
+                <polygon class="p-top-c" points="40,25 70,25 80,35"/>
+                <polygon class="p-left-c" points="30,35 40,35 40,65 30,65"/>
+                <polygon class="p-bottom-c" points="40,75 70,75 80,65"/>
+            </svg>
+        </a>
+        <button class="btn-menu link-mag" id="btn-menu">
+            <svg class="triangulo" viewBox="0 0 100 100">
+                <polygon class="pedaco p-top" points="50,15 65,45 35,45"/>
+                <polygon class="pedaco p-left" points="35,45 50,75 20,75"/>
+                <polygon class="pedaco p-right" points="65,45 80,75 50,75"/>
+            </svg>
+        </button>
+    </header>
+        
+    <div id="tela-links">
+    <nav class="links-principais">
+        <a href="index.html" class="link-mag" data-texto="Início">Início</a>
+        <a href="humanas.html" class="link-mag" data-texto="Ciências Humanas">Ciências Humanas</a>
+        <a href="linguagens.html" class="link-mag" data-texto="Linguagens">Linguagens</a>
+        <a href="natureza.html" class="link-mag ativo" data-texto="Natureza">Natureza</a>
+        <a href="matematica.html" class="link-mag" data-texto="Matemática">Matemática</a>
+        
+        <a href="tecnico.html" class="link-mag" data-texto="Técnico">Técnico</a>
+    </nav>
+</div>
+
+    <main class="pagina-interna">
+
+       <div class="cabecalho-pagina">
+            <div id="painel-status" class="status-box link-mag">
+                <span class="status-txt">ESTADO DO REATOR</span>
+                <span id="codigo-secreto" class="status-codigo glitch-cor" data-text="[ NAT-04 ]">[ NAT-04 ]</span>
+                
+                <div class="progresso-wrapper">
+                    <div id="barra-progresso" class="barra-progresso"></div>
+                </div>
+                
+                <span id="status-erro" class="status-erro">INSTABILIDADE TÉRMICA DETECTADA</span>
+            </div>
+
+            <h1 class="nome">Ciências da <span class="destaque">Natureza</span></h1>
+            <p class="texto-intro">Investigando as leis da física, as reações químicas e os mistérios da vida biológica.</p>
+        </div>
+
+        <div class="split-layout">
+            
+            <aside class="trimestres-nav">
+                <button class="btn-trimestre link-mag ativo" data-alvo="tri-1">
+                    <span class="num">01.</span> 1º Trimestre
+                </button>
+                <button class="btn-trimestre link-mag" data-alvo="tri-2">
+                    <span class="num">02.</span> 2º Trimestre
+                </button>
+                <button class="btn-trimestre link-mag" data-alvo="tri-3">
+                    <span class="num">03.</span> 3º Trimestre
+                </button>
+            </aside>
+
+            <section class="atividades-conteudo">
+                
+                <div class="trimestre-painel ativo" id="tri-1">
+                    <h3 class="titulo-secao">Explorações Biológicas</h3>
+                    <div class="lista-atividades">
+                        <div class="atividade-card link-mag">
+                            <div class="card-info">
+                                <span class="materia-tag">Biologia</span>
+                                <h4>Citologia e Organelas</h4>
+                                <p>Estudo das estruturas celulares e suas funções vitais no organismo.</p>
+                            </div>
+                            <div class="card-thumb">
+                                <img src="https://via.placeholder.com/150/2b2b33/00ffcc?text=Bio" alt="Thumb">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="trimestre-painel" id="tri-2">
+                    <h3 class="titulo-secao">Dinâmicas Físicas</h3>
+                    <div class="lista-atividades">
+                        <div class="atividade-card link-mag">
+                            <div class="card-info">
+                                <span class="materia-tag">Física</span>
+                                <h4>Mecânica Clássica</h4>
+                                <p>Análise das Leis de Newton e conservação de energia.</p>
+                            </div>
+                            <div class="card-thumb">
+                                <img src="https://via.placeholder.com/150/2b2b33/00ffcc?text=Fis" alt="Thumb">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="trimestre-painel" id="tri-3">
+                    <h3 class="titulo-secao">Reações Químicas</h3>
+                    <div class="lista-atividades">
+                        <div class="atividade-card link-mag">
+                            <div class="card-info">
+                                <span class="materia-tag">Química</span>
+                                <h4>Estequiometria</h4>
+                                <p>Cálculos de massa, mols e volume em transformações da matéria.</p>
+                            </div>
+                            <div class="card-thumb">
+                                <img src="https://via.placeholder.com/150/2b2b33/00ffcc?text=Qui" alt="Thumb">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </div>
+    </main>
+
+    <div class="modal-atividade" id="modal-atividade">
+        <button class="btn-fechar link-mag" id="btn-fechar-modal">
+            <svg viewBox="0 0 100 100" width="40" height="40">
+                <line x1="20" y1="20" x2="80" y2="80" stroke="#b8b8d1" stroke-width="4" stroke-linecap="round"/>
+                <line x1="80" y1="20" x2="20" y2="80" stroke="#b8b8d1" stroke-width="4" stroke-linecap="round"/>
+            </svg>
+        </button>
+
+        <div class="modal-conteudo">
+            <div class="modal-imagem">
+                <div class="img-placeholder">
+                    <span>Espaço para a Foto ou PDF da Atividade</span>
+                </div>
+            </div>
+            
+            <div class="modal-textos">
+                <span class="materia-tag">Tag</span>
+                <h2 class="titulo-modal">Título</h2>
+                <p class="desc-modal">Descrição detalhada</p>
+                
+                <h4 class="habilidades-titulo">Habilidades</h4>
+                <ul class="habilidades-lista" id="lista-habilidades-modal">
+                    </ul>
+            </div>
+        </div>
+    </div>
+
+   <div id="background-buraco-negro" style="display: none;">
+        <div id="anel-acrecao" style="background: radial-gradient(circle at center, #00ffcc 0%, #000 100%);"></div>
+    </div>
+    
+    <div id="terminal-alien" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(0, 15, 10, 0.95); border: 2px solid #00ffcc; padding: 40px; z-index: 99999; flex-direction: column; align-items: center; text-align: center; box-shadow: 0 0 50px rgba(0, 255, 204, 0.4); backdrop-filter: blur(10px); width: 90vw; max-width: 700px;">
+        <h3 style="color: #00ffcc; font-family: 'Rajdhani', sans-serif; font-size: 2rem; margin-bottom: 10px;">REPARO GENÉTICO AVANÇADO</h3>
+        <p style="color: #00ffcc; font-family: 'Rajdhani', sans-serif; letter-spacing: 2px; margin-bottom: 20px;">CLIQUE NAS BASES NA ORDEM EXATA PARA SEQUENCIAR:</p>
+        
+        <div id="target-sequencia" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 20px; font-family: monospace; font-weight: bold; font-size: 1.5rem;">
+            <div style="color: #ffcc00;">A</div> <div style="color: #fff;">→</div>
+            <div style="color: #44ff44;">T</div> <div style="color: #fff;">→</div>
+            <div style="color: #44ccff;">C</div> <div style="color: #fff;">→</div>
+            <div style="color: #ff4444;">G</div> <div style="color: #fff;">→</div>
+            <div style="color: #44ff44;">T</div> <div style="color: #fff;">→</div>
+            <div style="color: #ffcc00;">A</div> <div style="color: #fff;">→</div>
+            <div style="color: #ff4444;">G</div> <div style="color: #fff;">→</div>
+            <div style="color: #44ccff;">C</div>
+        </div>
+
+        <div id="sequencia-atual" style="font-family: monospace; font-size: 1.8rem; color: #fff; letter-spacing: 5px; margin-bottom: 20px; border-bottom: 2px solid #00ffcc; min-width: 60%; height: 40px; display: flex; align-items: center; justify-content: center; flex-wrap: wrap;"></div>
+
+        <style>
+            .bloco-dna { width: 55px; height: 55px; border: 2px solid #00ffcc; display: flex; align-items: center; justify-content: center; font-family: monospace; font-size: 2rem; font-weight: bold; cursor: pointer; transition: all 0.2s; box-shadow: 0 0 10px rgba(0,255,204,0.2); }
+            .bloco-dna:hover { transform: scale(1.1); box-shadow: 0 0 20px #00ffcc; }
+            .bloco-dna.desativado { opacity: 0.2; pointer-events: none; transform: scale(0.9); box-shadow: none; }
+        </style>
+        <div id="area-jogo-dna" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-bottom: 10px; width: 100%;">
+            </div>
+    </div>
+
+    <div id="tela-game-over" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.95); flex-direction: column; justify-content: center; align-items: center; z-index: 100000; text-align: center;">
+        <h2 style="color: #00ffcc; font-size: 3rem; font-family: 'Rajdhani', sans-serif; text-shadow: 0 0 20px #00ffcc;">COLAPSO DO REATOR<br>MATÉRIA DESESTABILIZADA</h2>
+        <button id="btn-reset-emergencia" class="link-mag" style="background: transparent; color: #00ffcc; border: 1px solid #00ffcc; padding: 15px 30px; margin-top: 30px; cursor: pointer;">REINICIAR NÚCLEO</button>
+    </div>
+
+   
+
+   <script>
+    // =========================================
+    // 1. CURSOR, PARALLAX E MENUS
+    // =========================================
+    const ponto = document.getElementById('ponto');
+    const rastro = document.getElementById('rastro');
+    const linksMag = document.querySelectorAll('.link-mag');
+
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let rastroX = mouseX, rastroY = mouseY;
+
+    window.addEventListener('mousemove', e => {
+        mouseX = e.clientX; mouseY = e.clientY;
+        if(ponto) ponto.style.transform = `translate3d(calc(${mouseX}px - 50%), calc(${mouseY}px - 50%), 0)`;
+        
+        const brasaoSvg = document.querySelector('.brasao-svg');
+        if (brasaoSvg && !document.body.classList.contains('modo-overdrive')) {
+            const movX = (mouseX / window.innerWidth - 0.5) * 40;
+            const movY = (mouseY / window.innerHeight - 0.5) * 40;
+            brasaoSvg.style.transform = `translate(${-movX}px, ${-movY}px)`;
+        }
+    });
+
+    function animarRastro() {
+        rastroX += (mouseX - rastroX) * 0.15; rastroY += (mouseY - rastroY) * 0.15;
+        if(rastro) rastro.style.transform = `translate3d(calc(${rastroX}px - 50%), calc(${rastroY}px - 50%), 0)`;
+        requestAnimationFrame(animarRastro);
+    }
+    animarRastro();
+
+    const btnMenu = document.getElementById('btn-menu');
+    const telaLinks = document.getElementById('tela-links');
+    if (btnMenu && telaLinks) {
+        btnMenu.addEventListener('click', () => {
+            btnMenu.classList.toggle('aberto');
+            telaLinks.classList.toggle('visivel');
+        });
+    }
+
+    const botoesTrimestre = document.querySelectorAll('.btn-trimestre');
+    const paineisTrimestre = document.querySelectorAll('.trimestre-painel');
+    botoesTrimestre.forEach(botao => {
+        botao.addEventListener('click', () => {
+            botoesTrimestre.forEach(b => b.classList.remove('ativo'));
+            paineisTrimestre.forEach(p => p.classList.remove('ativo'));
+            botao.classList.add('ativo');
+            document.getElementById(botao.getAttribute('data-alvo'))?.classList.add('ativo');
+        });
+    });
+
+    // =========================================
+    // 2. MODAL DE ATIVIDADES (ATUALIZADO COM HABILIDADES)
+    // =========================================
+    const modalAtividade = document.getElementById('modal-atividade');
+    const btnFecharModal = document.getElementById('btn-fechar-modal');
+
+    document.querySelectorAll('.atividade-card').forEach(card => {
+        card.addEventListener('click', () => {
+            // Pega o conteúdo clicado
+            const tag = card.querySelector('.materia-tag')?.innerText || 'ATIVIDADE';
+            const titulo = card.querySelector('h4')?.innerText || 'Sem Título';
+            const desc = card.querySelector('p')?.innerText || 'Sem descrição.';
+            
+            // Pega as habilidades escondidas no card
+            const habs = card.querySelector('.habilidades-hidden')?.innerHTML || '<li>Habilidades não especificadas.</li>';
+
+            // Preenche o modal
+            if (modalAtividade) {
+                const tagEl = modalAtividade.querySelector('.materia-tag');
+                const titEl = modalAtividade.querySelector('.titulo-modal');
+                const descEl = modalAtividade.querySelector('.desc-modal');
+                const habsEl = modalAtividade.querySelector('.habilidades-lista');
+                
+                if(tagEl) tagEl.innerText = tag;
+                if(titEl) titEl.innerText = titulo;
+                if(descEl) descEl.innerText = desc;
+                if(habsEl) habsEl.innerHTML = habs; // Injeta os <li> das habilidades
+                
+                modalAtividade.classList.add('visivel');
+            }
+        });
+    });
+
+    if (btnFecharModal) {
+        btnFecharModal.addEventListener('click', () => {
+            modalAtividade.classList.remove('visivel');
+        });
+    }
+    if (modalAtividade) {
+        modalAtividade.addEventListener('click', (e) => {
+            if (e.target === modalAtividade) {
+                modalAtividade.classList.remove('visivel');
+            }
+        });
+    }
+
+    // =========================================
+    // 3. SCI-FI OVERDRIVE: NATUREZA (DNA)
+    // =========================================
+    const painelStatus = document.getElementById('painel-status');
+    const marcaDagua = document.querySelector('.marca-dagua-brasao');
+    const barraProgresso = document.getElementById('barra-progresso');
+    const codigoSecreto = document.getElementById('codigo-secreto');
+    const body = document.body;
+    
+    const terminalUI = document.getElementById('terminal-alien');
+    const btnReset = document.getElementById('btn-reset-emergencia');
+    const areaJogoDNA = document.getElementById('area-jogo-dna');
+    const buracoNegro = document.getElementById('background-buraco-negro');
+    const tituloPrincipal = document.querySelector('.nome');
+    const textoIntro = document.querySelector('.texto-intro');
+
+    let tempoRestante = 200; 
+    let desafioAtivo = false;
+    let bloqueioAtivo = false;
+    let temporizador;
+
+    const targetOrder = ['A', 'T', 'C', 'G', 'T', 'A', 'G', 'C'];
+    const dnaData = {
+        'A': { cor: '#ffcc00' },
+        'T': { cor: '#44ff44' },
+        'C': { cor: '#44ccff' },
+        'G': { cor: '#ff4444' }
+    };
+    let sequenciaAtual = [];
+
+    function efeitoHacker(elemento, textoFinal, velocidadeFactor = 3) {
+        if (!elemento) return;
+        const letrasHack = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=[]{}|;:',.<>?/";
+        let iteracoes = 0;
+        const tamanhoMaximo = Math.max((elemento.innerText || "").length, textoFinal.length);
+        
+        const intervalo = setInterval(() => {
+            let textoAtual = "";
+            for(let i = 0; i < tamanhoMaximo; i++) {
+                if(i < iteracoes) {
+                    textoAtual += textoFinal[i] || "";
+                } else {
+                    textoAtual += letrasHack[Math.floor(Math.random() * letrasHack.length)];
+                }
+            }
+            elemento.innerText = textoAtual;
+            
+            if(iteracoes >= tamanhoMaximo) {
+                elemento.innerText = textoFinal;
+                clearInterval(intervalo);
+            }
+            iteracoes += 1 / velocidadeFactor; 
+        }, 30);
+    }
+
+    function iniciarDNA() {
+        if(!areaJogoDNA) return;
+        areaJogoDNA.innerHTML = ''; 
+        sequenciaAtual = [];
+        const seqAtualInfo = document.getElementById('sequencia-atual');
+        if(seqAtualInfo) seqAtualInfo.innerText = '';
+
+        const misturados = [...targetOrder].sort(() => Math.random() - 0.5);
+
+        misturados.forEach(letra => {
+            const bloco = document.createElement('div');
+            bloco.className = 'bloco-dna';
+            bloco.innerText = letra;
+            bloco.style.color = dnaData[letra].cor;
+            bloco.style.borderColor = dnaData[letra].cor;
+            
+            bloco.addEventListener('click', () => clicarNoBloco(letra, bloco));
+            areaJogoDNA.appendChild(bloco);
+        });
+    }
+
+    function clicarNoBloco(letra, elemento) {
+        if (!desafioAtivo || elemento.classList.contains('desativado')) return;
+
+        const proximaCorreta = targetOrder[sequenciaAtual.length];
+
+        if (letra === proximaCorreta) {
+            sequenciaAtual.push(letra);
+            elemento.classList.add('desativado'); 
+            const seqAtualInfo = document.getElementById('sequencia-atual');
+            if(seqAtualInfo) seqAtualInfo.innerText = sequenciaAtual.join(' ');
+
+            if (sequenciaAtual.length === targetOrder.length) {
+                finalizarDesafio(true);
+            }
+        } else {
+            sequenciaAtual = [];
+            const seqAtualInfo = document.getElementById('sequencia-atual');
+            if(seqAtualInfo) seqAtualInfo.innerText = '';
+            
+            if(terminalUI) {
+                terminalUI.style.transform = "translate(-50%, -50%) translateX(10px)";
+                setTimeout(() => terminalUI.style.transform = "translate(-50%, -50%) translateX(-10px)", 50);
+                setTimeout(() => terminalUI.style.transform = "translate(-50%, -50%) translateX(0)", 100);
+                
+                const corOriginal = terminalUI.style.borderColor;
+                terminalUI.style.borderColor = "#ff3333";
+                setTimeout(() => terminalUI.style.borderColor = corOriginal, 200);
+            }
+
+            document.querySelectorAll('.bloco-dna').forEach(b => {
+                b.classList.remove('desativado');
+            });
+        }
+    }
+
+    function finalizarDesafio(sucesso) {
+        desafioAtivo = false;
+        bloqueioAtivo = true;
+        clearInterval(temporizador);
+        
+        if(terminalUI) terminalUI.style.display = 'none';
+        if(painelStatus) painelStatus.classList.add('bloqueado');
+        if(barraProgresso) barraProgresso.style.transform = `scaleX(1)`; 
+        
+        if (sucesso) {
+            efeitoHacker(tituloPrincipal, "NÚCLEO ESTABILIZADO");
+            efeitoHacker(textoIntro, "Sequenciamento genético concluído. Reação molecular controlada.");
+            if(codigoSecreto) codigoSecreto.innerText = "SISTEMA SEGURO";
+            if(barraProgresso) barraProgresso.style.background = '#44ff44';
+
+            body.classList.remove('modo-overdrive');
+            if(marcaDagua) marcaDagua.classList.remove('overdrive');
+            if(buracoNegro) buracoNegro.style.display = 'none';
+
+            setTimeout(() => {
+                efeitoHacker(tituloPrincipal, "Ciências da Natureza");
+                efeitoHacker(textoIntro, "Investigando as leis da física, as reações químicas e os mistérios da vida biológica.");
+                if(codigoSecreto) codigoSecreto.innerText = "[ NAT-04 ]";
+                if(barraProgresso) barraProgresso.style.background = 'rgba(255, 255, 255, 0.3)';
+                if(painelStatus) painelStatus.classList.remove('bloqueado');
+                bloqueioAtivo = false;
+            }, 4000); 
+        } else {
+            body.classList.add('falha-catastrofica');
+            const telaGameOver = document.getElementById('tela-game-over');
+            if(telaGameOver) telaGameOver.style.display = 'flex';
+        }
+    }
+
+    if (btnReset) {
+        btnReset.addEventListener('click', () => location.reload());
+    }
+
+    if (painelStatus && marcaDagua) {
+        painelStatus.addEventListener('click', () => {
+            if (bloqueioAtivo || desafioAtivo) return; 
+            
+            desafioAtivo = true;
+            painelStatus.classList.add('bloqueado'); 
+            
+            body.classList.add('modo-overdrive');
+            marcaDagua.classList.add('overdrive');
+            
+            efeitoHacker(tituloPrincipal, "COLAPSO MOLECULAR");
+            efeitoHacker(textoIntro, "Instabilidade térmica detectada no núcleo. Monte a sequência genética correta para evitar o derretimento.");
+            if(codigoSecreto) codigoSecreto.innerText = "[ DNA BIO ]"; 
+            
+            tempoRestante = 200; 
+            if(terminalUI) terminalUI.style.display = 'flex';
+            if(buracoNegro) buracoNegro.style.display = 'block';
+            
+            iniciarDNA();
+
+            temporizador = setInterval(() => {
+                tempoRestante--;
+                if(barraProgresso) barraProgresso.style.transform = `scaleX(${tempoRestante / 200})`;
+                
+                if (tempoRestante <= 0 && desafioAtivo) {
+                    finalizarDesafio(false);
+                }
+            }, 100);
+        });
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caetano Rocha | Portfólio</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="meu-fundo-decorativo"></div>
+    <div id="ruido"></div>
+    <div id="linha-varredura"></div>
+    <div id="ponto"></div>
+    <div id="rastro"></div>
+    
+    <div id="ruido"></div>
+
+    <header>
+        <div class="logo-box link-mag">
+            <svg class="logo-svg" viewBox="0 0 100 100">
+                <polygon class="p-top-c" points="40,25 70,25 80,35"/>
+                <polygon class="p-left-c" points="30,35 40,35 40,65 30,65"/>
+                <polygon class="p-bottom-c" points="40,75 70,75 80,65"/>
+                <polyline class="p-connect" points="40,35 30,35 30,65 40,65"/>
+            </svg>
+        </div>
+        
+        <button class="btn-menu link-mag" id="btn-menu">
+            <svg class="triangulo" viewBox="0 0 100 100">
+                <polygon class="pedaco p-top" points="50,15 65,45 35,45"/>
+                <polygon class="pedaco p-left" points="35,45 50,75 20,75"/>
+                <polygon class="pedaco p-right" points="65,45 80,75 50,75"/>
+                <polygon class="pedaco p-mid" points="35,45 65,45 50,75"/>
+            </svg>
+        </button>
+    </header>
+
+    <div class="tela-links" id="tela-links">
+        <ul class="nav-links">
+            <li><a href="index.html" class="link-mag"><span class="num">01.</span> Início</a></li>
+            <li><a href="humanas.html" class="link-mag"><span class="num">02.</span> Humanas</a></li>
+            <li><a href="linguagens.html" class="link-mag"><span class="num">03.</span> Linguagens</a></li>
+            <li><a href="natureza.html" class="link-mag"><span class="num">04.</span> Natureza</a></li>
+            <li><a href="#" class="link-mag"><span class="num">05.</span> Matemática</a></li>
+            
+            <li class="item-retratil">
+                <button id="btn-tecnico-menu" class="link-mag btn-menu-gigante">
+                    <span class="num">06.</span> Técnico
+                </button>
+                
+                <ul id="sub-menu-tecnico" class="sub-menu">
+                    <li><a href="#" class="link-mag">- Lógica de Prog.</a></li>
+                    <li><a href="#" class="link-mag">- Desenv. Web</a></li>
+                    <li><a href="#" class="link-mag">- Banco de Dados</a></li>
+                    <li><a href="#" class="link-mag">- Design (UI/UX)</a></li>
+                </ul>
+            </li>
+            
+            <li><a href="#" class="link-mag"><span class="num">07.</span> Sobre mim</a></li>
+        </ul>
+    </div>
+
+    <main class="hero">
+
+        <div class="foto-box">
+            <div class="foto-moldura">
+                <img src="" alt="" class="foto">
+            </div>
+        </div>
+
+
+
+        <h2 class="lema">frase legal</h2>
+        <h1 class="nome">Caetano <span class="destaque">Rocha de Oliveira</span></h1>
+
+        <div class="sobre-area">
+            <button id="btn-sobre" class="btn-sobre link-mag">
+                <span class="btn-txt">SOBRE MIM</span>
+                <svg class="seta" viewBox="0 0 100 100">
+                    <polyline class="seta-linha" points="20,40 50,70 80,40"/>
+                </svg>
+            </button>
+            
+            <div id="sobre-txt" class="sobre-txt">
+                <div class="sobre-conteudo">
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea officiis eligendi id rerum nemo tempora. Vel, delectus eligendi inventore aliquam mollitia ipsa dicta labore rem nesciunt, repellendus fugit blanditiis itaque.
+                    </p>
+                    <div class="linha"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Cursores
+        const ponto = document.getElementById('ponto');
+        const rastro = document.getElementById('rastro');
+        const linksMag = document.querySelectorAll('.link-mag');
+
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
+        let rastroX = mouseX, rastroY = mouseY;
+
+        window.addEventListener('mousemove', e => {
+            mouseX = e.clientX; 
+            mouseY = e.clientY;
+            document.documentElement.style.setProperty('--mouse-x', `${mouseX}px`);
+            document.documentElement.style.setProperty('--mouse-y', `${mouseY}px`);
+            ponto.style.transform = `translate3d(calc(${mouseX}px - 50%), calc(${mouseY}px - 50%), 0)`;
+        });
+
+        function animarRastro() {
+            rastroX += (mouseX - rastroX) * 0.15; 
+            rastroY += (mouseY - rastroY) * 0.15;
+            rastro.style.transform = `translate3d(calc(${rastroX}px - 50%), calc(${rastroY}px - 50%), 0)`;
+            requestAnimationFrame(animarRastro);
+        }
+        animarRastro();
+
+        // Efeito Magnético
+        linksMag.forEach(link => {
+            link.addEventListener('mouseenter', () => rastro.classList.add('ativo'));
+            link.addEventListener('mouseleave', () => {
+                rastro.classList.remove('ativo');
+                link.style.transform = `translate(0px, 0px)`;
+            });
+
+            link.addEventListener('mousemove', (e) => {
+                const caixa = link.getBoundingClientRect();
+                const x = e.clientX - caixa.left - caixa.width / 2;
+                const y = e.clientY - caixa.top - caixa.height / 2;
+                link.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
+            });
+        });
+
+        // Menu
+        const btnMenu = document.getElementById('btn-menu');
+        const telaLinks = document.getElementById('tela-links');
+
+        btnMenu.addEventListener('click', () => {
+            btnMenu.classList.toggle('aberto');
+            telaLinks.classList.toggle('visivel');
+        });
+
+        // Sobre Mim
+        const btnSobre = document.getElementById('btn-sobre');
+        const sobreTxt = document.getElementById('sobre-txt');
+
+        btnSobre.addEventListener('click', () => {
+            btnSobre.classList.toggle('ativo');
+            sobreTxt.classList.toggle('revelado');
+        });
+
+        // Sub-menu Técnico no Menu Principal
+        const btnTecnicoMenu = document.getElementById('btn-tecnico-menu');
+        const subMenuTecnico = document.getElementById('sub-menu-tecnico');
+
+        // Se o botão existir na tela, ativa o clique
+        if (btnTecnicoMenu) {
+            btnTecnicoMenu.addEventListener('click', () => {
+                btnTecnicoMenu.classList.toggle('ativo');
+                subMenuTecnico.classList.toggle('revelado');
+            });
+        }
+    </script>
+</body>
+</html>

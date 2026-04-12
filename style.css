@@ -1,0 +1,1239 @@
+:root {
+    --bg-cor: #312b38; 
+    --anim-vel: 0.6s;
+}
+
+* {
+    margin: 0; padding: 0; box-sizing: border-box;
+    cursor: none !important;
+}
+
+::selection {
+    background-color: rgba(255, 255, 255, 0.15); 
+    color: #ffffff;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: #2b2b33; /* Sua nova cor de fundo */
+    color: white;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+
+#ruido {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    /* Mistura o granulado SVG com linhas horizontais fininhas */
+    background-image: 
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"),
+        linear-gradient(rgba(255, 255, 255, 0.02) 50%, transparent 50%);
+    
+    background-repeat: repeat;
+    background-size: 200px 200px, 100% 4px; 
+    opacity: 0.15; 
+    pointer-events: none; 
+    z-index: 9998; 
+    animation: tv 0.4s steps(5) infinite;
+}
+ /* =========================================
+   MEU FUNDO DECORATIVO (CRUZES)
+   ========================================= */
+#meu-fundo-decorativo {
+    position: fixed; 
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    
+    /* Desenha uma cruzinha de 10x10 pixels num espaço de 100x100 pixels */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cpath d='M50,45 v10 M45,50 h10' stroke='%23ffffff' stroke-width='1'/%3E%3C/svg%3E");
+    
+    opacity: 0.04; /* Opacidade bem baixa para ficar sutil (aumente se quiser mais forte) */
+    z-index: 1; /* Fica colado no fundo, atrás de tudo */
+    pointer-events: none;
+}
+
+@keyframes tv {
+    0% { background-position: 0px 0px; }
+    20% { background-position: -50px 50px; }
+    40% { background-position: 100px -50px; }
+    60% { background-position: -150px 100px; }
+    80% { background-position: 50px -100px; }
+    100% { background-position: -50px 150px; }
+}
+
+/* =========================================
+   CURSORES
+   ========================================= */
+#ponto {
+    width: 6px; height: 6px; background: white; border-radius: 50%;
+    position: fixed; pointer-events: none; z-index: 10000;
+    transform: translate(-50%, -50%);
+}
+#rastro {
+    width: 40px; height: 40px; border: 1px solid rgba(255,255,255,0.2); border-radius: 50%;
+    position: fixed; pointer-events: none; z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s, background 0.3s;
+}
+#rastro.ativo { width: 65px !important; height: 65px !important; background: rgba(255,255,255,0.05); }
+
+header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 40px 60px; position: fixed; top: 0; left: 0; width: 100%;
+    z-index: 100;
+}
+
+.logo { font-size: 2rem; font-weight: 200; letter-spacing: 2px; }
+
+/* =========================================
+   MENU TRIÂNGULO
+   ========================================= */
+.btn-menu {
+    width: 55px; height: 55px; background: transparent; border: none; position: relative;
+}
+
+.triangulo {
+    width: 100%; height: 100%; fill: transparent; stroke: white; stroke-width: 2; stroke-linejoin: round;
+    transition: transform var(--anim-vel) cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+.pedaco { transition: transform var(--anim-vel) cubic-bezier(0.7, 0, 0.3, 1); transform-origin: center; }
+
+.btn-menu:hover .p-top { transform: translateY(-7px); }
+.btn-menu:hover .p-left { transform: translate(-7px, 3px); }
+.btn-menu:hover .p-right { transform: translate(7px, 3px); }
+.btn-menu:hover .p-mid { transform: scale(0.7); }
+
+.btn-menu.aberto .p-top { transform: translate(0, 15px) rotate(45deg); }
+.btn-menu.aberto .p-left { transform: translate(15px, -5px) rotate(-45deg); }
+.btn-menu.aberto .p-right { transform: translate(-15px, -5px) rotate(45deg); }
+.btn-menu.aberto .p-mid { opacity: 0; transform: scale(0); }
+.btn-menu.aberto .triangulo { transform: rotate(180deg); }
+
+.tela-links {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(43, 43, 51, 0.95); 
+    backdrop-filter: blur(15px); 
+    z-index: 90; 
+    display: flex; justify-content: center; align-items: center;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+.tela-links.visivel {
+    opacity: 1; pointer-events: all;
+}
+
+.nav-links {
+    list-style: none; 
+    display: flex; flex-direction: column; gap: 15px; /* Diminuí um pouco o gap para caber tudo */
+    text-align: left; 
+    max-height: 90vh; /* Impede que passe da tela */
+    overflow-y: auto; /* Adiciona rolagem se a tela for pequena */
+    padding: 20px;
+}
+
+/* Oculta a barra de rolagem mas mantém funcionando */
+.nav-links::-webkit-scrollbar { display: none; }
+
+/* Estilo igual para Links Normais e para o Botão do Técnico */
+.nav-links a, .btn-menu-gigante {
+    font-family: 'Rajdhani', sans-serif;
+    text-decoration: none; 
+    font-size: 4.5rem; /* Um pouco menor para caber todas as áreas */
+    font-weight: 700; letter-spacing: 5px; text-transform: uppercase;
+    display: flex; align-items: center;
+    background: transparent; border: none; cursor: none; padding: 0; width: 100%;
+    
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(184, 184, 209, 0.4);
+    
+    opacity: 0; transform: translateY(30px); 
+    transition: all 0.4s cubic-bezier(0.2, 1, 0.2, 1);
+}
+
+.nav-links .num {
+    font-size: 1.5rem; font-weight: 300; 
+    color: #b8b8d1; opacity: 0.5; margin-right: 20px;
+    -webkit-text-stroke: 0; 
+    transition: opacity 0.4s ease;
+}
+
+.tela-links.visivel .nav-links a, 
+.tela-links.visivel .btn-menu-gigante {
+    opacity: 1; transform: translateY(0); 
+}
+
+.tela-links.visivel .nav-links a:hover,
+.tela-links.visivel .btn-menu-gigante:hover,
+.btn-menu-gigante.ativo {
+    color: #b8b8d1; 
+    -webkit-text-stroke: 1px #b8b8d1;
+    transform: translateX(30px); 
+    text-shadow: 0 0 15px rgba(184, 184, 209, 0.4); 
+}
+
+.tela-links.visivel .nav-links a:hover .num,
+.tela-links.visivel .btn-menu-gigante:hover .num {
+    opacity: 1;
+}
+
+/* =========================================
+   SUB-MENU DO TÉCNICO (RETRÁTIL)
+   ========================================= */
+.item-retratil {
+    display: flex; flex-direction: column;
+}
+
+.sub-menu {
+    list-style: none;
+    padding-left: 80px; /* Alinha com o texto da opção acima */
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.6s cubic-bezier(0.7, 0, 0.3, 1), opacity 0.4s ease;
+}
+
+/* Quando o botão Técnico é clicado */
+.sub-menu.revelado {
+    max-height: 400px; 
+    opacity: 1;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.sub-menu a {
+    font-size: 2.2rem; /* Sub-links menores */
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+    -webkit-text-stroke: 1px rgba(184, 184, 209, 0.3); /* Contorno mais fraco */
+}
+
+/* Cascata de revelação (opcional, só pra ficar bonitão) */
+.tela-links.visivel li:nth-child(1) a { transition-delay: 0.1s; }
+.tela-links.visivel li:nth-child(2) a { transition-delay: 0.15s; }
+.tela-links.visivel li:nth-child(3) a { transition-delay: 0.2s; }
+.tela-links.visivel li:nth-child(4) a { transition-delay: 0.25s; }
+.tela-links.visivel li:nth-child(5) a { transition-delay: 0.3s; }
+.tela-links.visivel li:nth-child(6) .btn-menu-gigante { transition-delay: 0.35s; }
+.tela-links.visivel li:nth-child(7) a { transition-delay: 0.4s; }
+/* =========================================
+   HERO / APRESENTAÇÃO
+   ========================================= */
+.hero {
+    height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
+    text-align: center; position: relative; z-index: 50;
+}
+
+.lema {
+    font-size: 1.2rem; font-weight: 200; letter-spacing: 8px; color: rgba(255,255,255,0.6);
+    margin-bottom: 20px; text-transform: uppercase;
+    opacity: 0; transform: translateY(20px); animation: up 1s ease forwards 0.2s;
+}
+
+.nome {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 5.5rem; /* Aumentei um pouco */
+    font-weight: 700;
+    line-height: 0.9;
+    margin: 10px 0;
+    text-transform: uppercase;
+    letter-spacing: -2px; /* Caracteres mais "juntos" para um look editorial */
+    
+    /* Cor pastel roxo-cinza */
+    color: #b8b8d1;
+    
+    /* Brilho de tela CRT (Glow) */
+    text-shadow: 0 0 15px rgba(184, 184, 209, 0.3);
+    
+    opacity: 0;
+    transform: translateY(30px);
+    animation: up 1s cubic-bezier(0.2, 1, 0.2, 1) forwards 0.4s;
+}
+
+/* O destaque "vazado" para caracteres diferentes */
+.nome .destaque {
+    display: block; /* Quebra a linha para ficar mais imponente */
+    font-weight: 300;
+    /* Efeito de contorno (outline) */
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(184, 184, 209, 0.6);
+    letter-spacing: 15px; /* Espaçamento largo no sobrenome */
+    margin-top: 10px;
+    font-size: 4rem;
+}
+
+@keyframes up { to { opacity: 1; transform: translateY(0); } }
+
+.foto-box {
+    margin-bottom: 30px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: up 1s ease forwards 0.2s;
+}
+
+.foto-moldura {
+    width: 200px; 
+    height: 200px;
+    border-radius: 50%;
+    /* Borda sutil usando a nossa cor pastel tech */
+    border: 2px solid rgba(184, 184, 209, 0.3);
+    position: relative;
+    overflow: hidden;
+    background: transparent;
+    transition: transform 0.5s cubic-bezier(0.2, 1, 0.2, 1), border-color 0.5s ease;
+}
+
+.foto-moldura:hover {
+    transform: scale(1.05); /* Dá uma leve crescida no hover */
+    border-color: rgba(184, 184, 209, 0.8); /* Borda brilha no hover */
+}
+
+.foto {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Começa em preto e branco e com alto contraste */
+    filter: grayscale(100%) contrast(110%);
+    transition: filter 0.5s ease;
+}
+
+.foto-moldura:hover .foto {
+    /* Revela a cor original ao passar o mouse */
+    filter: grayscale(0%) contrast(100%);
+}
+
+/* =========================================
+   SOBRE MIM
+   ========================================= */
+.sobre-area {
+    margin-top: 40px; width: 100%; max-width: 500px; z-index: 60;
+}
+
+.btn-sobre {
+    background: none; border: none; color: white;
+    font-family: 'Rajdhani', sans-serif; font-size: 1.1rem; letter-spacing: 4px;
+    display: flex; align-items: center; gap: 15px; margin: 0 auto;
+    opacity: 0.6; transition: opacity 0.3s ease;
+}
+
+.btn-sobre:hover, .btn-sobre.ativo {
+    opacity: 1;
+}
+
+.seta {
+    width: 20px; height: 20px; fill: none; stroke: white; stroke-width: 8;
+    transition: transform 0.6s cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+.btn-sobre.ativo .seta {
+    transform: rotate(180deg);
+}
+
+.sobre-txt {
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.8s cubic-bezier(0.7, 0, 0.3, 1), opacity 0.5s ease;
+    opacity: 0; text-align: center;
+}
+
+.sobre-txt.revelado {
+    max-height: 300px; opacity: 1; margin-top: 20px;
+}
+
+.sobre-conteudo {
+    padding: 0 20px;
+}
+
+.sobre-conteudo p {
+    font-family: 'Outfit', sans-serif; font-weight: 200; line-height: 1.6;
+    color: rgba(255, 255, 255, 0.7); font-size: 1.1rem;
+}
+
+.linha {
+    width: 40px; height: 1px; background: white; margin: 20px auto 0; opacity: 0.3;
+}
+
+.logo-box {
+    width: 60px; /* Tamanho da logo no header */
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.5s cubic-bezier(0.2, 1, 0.2, 1);
+}
+
+.logo-box:hover {
+    transform: scale(1.1); /* Sutil aumento no hover */
+}
+
+.logo-svg {
+    width: 100%;
+    height: 100%;
+}
+
+.logo-svg polygon, .logo-svg polyline {
+    fill: none;
+    stroke: #b8b8d1; /* Nossa cor Pastel Tech */
+    stroke-width: 2.5; /* Espessura técnica */
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    /* Mesma animação suave do triângulo */
+    transition: transform var(--anim-vel) cubic-bezier(0.7, 0, 0.3, 1), stroke-width 0.3s ease;
+}
+
+/* Centraliza a origem das transformações de cada peça */
+.p-top-c, .p-left-c, .p-bottom-c, .p-connect {
+    transform-origin: center;
+}
+
+/* =========================================
+   ANIMAÇÃO DE PARTES NO HOVER (C-LOGO)
+   ========================================= */
+.logo-box:hover .p-top-c {
+    transform: translate(5px, -5px) rotate(10deg);
+}
+
+.logo-box:hover .p-left-c {
+    transform: translate(-5px, 0px) rotate(-10deg);
+}
+
+.logo-box:hover .p-bottom-c {
+    transform: translate(5px, 5px) rotate(-10deg);
+}
+
+.logo-box:hover .p-connect {
+    stroke-width: 1; /* O conector fica mais fino no hover */
+    opacity: 0.5;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* =========================================
+   ESTRUTURA DAS PÁGINAS INTERNAS
+   ========================================= */
+.pagina-interna {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 120px 10% 50px 10%; /* Espaço no topo para o cabeçalho não cobrir */
+    height: 100vh;
+    overflow-y: auto; /* Permite rolar a página se o conteúdo for longo */
+}
+
+/* Ocultar barra de rolagem (opcional) */
+.pagina-interna::-webkit-scrollbar {
+    width: 6px;
+}
+.pagina-interna::-webkit-scrollbar-thumb {
+    background: rgba(184, 184, 209, 0.3);
+    border-radius: 10px;
+}
+
+.cabecalho-pagina {
+    margin-bottom: 40px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: up 1s cubic-bezier(0.2, 1, 0.2, 1) forwards 0.2s;
+}
+
+.cabecalho-pagina .nome {
+    font-size: 4.5rem;
+    margin: 0;
+}
+
+.cabecalho-pagina .destaque {
+    font-size: 3.5rem;
+}
+
+.texto-intro {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 200;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.1rem;
+    margin-top: 15px;
+    max-width: 600px;
+}
+
+.conteudo-area {
+    width: 100%;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: up 1s cubic-bezier(0.2, 1, 0.2, 1) forwards 0.4s;
+}
+
+.grid-materias.interna {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    margin-bottom: 50px;
+}
+
+.projetos-lista p {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 200;
+    color: rgba(255, 255, 255, 0.4);
+    font-style: italic;
+}
+
+.split-layout {
+    display: flex;
+    width: 100%;
+    gap: 50px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: up 1s cubic-bezier(0.2, 1, 0.2, 1) forwards 0.4s;
+    align-items: flex-start;
+}
+
+/* Coluna Esquerda */
+.trimestres-nav {
+    flex: 1; /* Ocupa 1 parte do espaço */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    border-right: 1px solid rgba(184, 184, 209, 0.2);
+    padding-right: 30px;
+}
+
+.btn-trimestre {
+    background: transparent;
+    border: none;
+    text-align: left;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 2rem;
+    color: rgba(184, 184, 209, 0.4);
+    cursor: none;
+    padding: 10px 0;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+}
+
+.btn-trimestre .num {
+    font-size: 1rem;
+    opacity: 0.5;
+    margin-right: 10px;
+}
+
+.btn-trimestre:hover, .btn-trimestre.ativo {
+    color: #b8b8d1;
+    transform: translateX(10px);
+}
+
+/* Coluna Direita */
+.atividades-conteudo {
+    flex: 2.5; /* Ocupa 2.5 partes do espaço (maior) */
+    width: 100%;
+}
+
+.trimestre-painel {
+    display: none; /* Oculta todos por padrão */
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.trimestre-painel.ativo {
+    display: block; /* Mostra apenas o ativo */
+}
+
+/* Cards das Atividades */
+.lista-atividades {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.atividade-card {
+    border: 1px solid rgba(184, 184, 209, 0.15);
+    padding: 25px;
+    background: rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    cursor: none;
+    position: relative;
+    overflow: hidden;
+    
+    /* Regras para alinhar imagem e texto lado a lado */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px; 
+}
+
+/* O texto ocupa o espaço que sobrar */
+.card-info {
+    flex: 1; 
+}
+
+/* A caixinha da imagem no canto direito */
+.card-thumb {
+    width: 90px;
+    height: 90px;
+    flex-shrink: 0; 
+    border-radius: 5px;
+    overflow: hidden;
+    border: 1px solid rgba(184, 184, 209, 0.2);
+}
+
+/* O truque do Filtro P&B na Imagem */
+.card-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    filter: grayscale(100%) opacity(0.6);
+    transition: all 0.5s cubic-bezier(0.2, 1, 0.2, 1);
+}
+
+/* Quando passa o mouse no card inteiro */
+.atividade-card:hover {
+    border-color: rgba(184, 184, 209, 0.8);
+    transform: translateY(-3px);
+}
+
+/* A imagem ganha cor e dá um leve zoom */
+.atividade-card:hover .card-thumb img {
+    filter: grayscale(0%) opacity(1);
+    transform: scale(1.1);
+}
+
+.atividade-card:hover {
+    border-color: rgba(184, 184, 209, 0.8);
+    transform: translateY(-3px);
+}
+
+.materia-tag {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.8rem;
+    color: #b8b8d1;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    background: rgba(184, 184, 209, 0.1);
+    padding: 3px 8px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.atividade-card h4 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.8rem;
+    color: #fff;
+    margin: 10px 0;
+    font-weight: 500;
+}
+
+.atividade-card p {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 200;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.5;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-atividade {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    /* Fundo igual ao do menu, com blur */
+    background-color: rgba(43, 43, 51, 0.95);
+    backdrop-filter: blur(15px);
+    z-index: 100; /* Fica acima de tudo, até do menu */
+    display: flex; justify-content: center; align-items: center;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+.modal-atividade.visivel {
+    opacity: 1; pointer-events: all;
+}
+
+.btn-fechar {
+    position: absolute;
+    top: 40px; right: 40px;
+    background: transparent; border: none; cursor: none;
+    transition: transform 0.4s cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+.btn-fechar:hover {
+    transform: scale(1.1) rotate(90deg); /* Efeito giro tech */
+}
+
+/* Estrutura interna de duas colunas */
+.modal-conteudo {
+    display: flex;
+    gap: 50px;
+    width: 85%;
+    max-width: 1100px;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.6s cubic-bezier(0.2, 1, 0.2, 1);
+}
+
+.modal-atividade.visivel .modal-conteudo {
+    opacity: 1; transform: translateY(0);
+    transition-delay: 0.2s; /* Atrasa um pouquinho pra dar efeito de entrada */
+}
+
+.modal-imagem {
+    flex: 1;
+}
+
+/* Espaço provisório onde a imagem vai ficar */
+.img-placeholder {
+    width: 100%;
+    height: 450px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px dashed rgba(184, 184, 209, 0.4);
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(184, 184, 209, 0.5);
+    font-family: 'Outfit', sans-serif;
+    font-weight: 200;
+    padding: 20px;
+    text-align: center;
+}
+
+.modal-textos {
+    flex: 1;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.titulo-modal {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 3.5rem;
+    color: #fff;
+    margin: 15px 0 20px 0;
+    line-height: 1;
+}
+
+.desc-modal {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 200;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.habilidades-titulo {
+    font-family: 'Rajdhani', sans-serif;
+    color: #b8b8d1;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+.habilidades-lista {
+    list-style: none;
+    padding: 0;
+}
+
+.habilidades-lista li {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 200;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 20px;
+}
+
+.habilidades-lista li::before {
+    content: '>';
+    position: absolute;
+    left: 0;
+    color: #b8b8d1;
+    font-weight: 700;
+}
+
+/* =========================================
+   SCI-FI OVERDRIVE: FALHA CRÍTICA DO SISTEMA
+   ========================================= */
+
+/* 1. FILTRO DE MONITOR CRT */
+.crt-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    background-size: 100% 4px, 3px 100%;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.1s;
+}
+
+body.modo-overdrive {
+    background-color: #050000;
+    box-shadow: inset 0 0 150px rgba(255, 0, 0, 0.4);
+    animation: tremorTela 0.4s ease-in-out;
+}
+
+body.modo-overdrive .crt-overlay {
+    opacity: 1;
+    animation: scanlineMove 10s linear infinite;
+}
+
+@keyframes tremorTela {
+    0% { transform: translate(2px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(0px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(2px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(2px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+@keyframes scanlineMove {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 100vh; }
+}
+
+/* Textos e UI corrompidos pro vermelho */
+body.modo-overdrive .cabecalho-pagina .nome,
+body.modo-overdrive .titulo-secao,
+body.modo-overdrive .btn-trimestre,
+body.modo-overdrive .texto-intro,
+body.modo-overdrive .btn-trimestre .num {
+    color: #ff3333;
+    text-shadow: 2px 0px 5px rgba(255, 0, 0, 0.8);
+}
+
+body.modo-overdrive .atividade-card {
+    background: rgba(255, 0, 0, 0.05);
+    border-color: rgba(255, 0, 0, 0.3);
+}
+
+body.modo-overdrive .materia-tag {
+    background: #ff0000;
+    color: #000;
+}
+
+/* =========================================
+   PAINEL DE STATUS (QUE FALTAVA NO ÚLTIMO CÓDIGO)
+   ========================================= */
+.status-box {
+    border: 1px solid rgba(184, 184, 209, 0.2);
+    padding: 10px 15px; 
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px; 
+    background: rgba(0, 0, 0, 0.2);
+    margin-bottom: 30px; /* Garante que o painel não empilhe em cima do texto */
+    transition: all 0.3s ease;
+}
+
+.status-box:hover {
+    border-color: rgba(184, 184, 209, 0.6);
+    background: rgba(184, 184, 209, 0.05);
+}
+
+.status-txt {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.status-codigo {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 1.8rem; 
+    color: #b8b8d1;
+    line-height: 1;
+    white-space: nowrap; /* Isso impede que o texto quebre ou deforme a caixa */
+}
+
+.status-erro {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.7rem;
+    color: #ff4444;
+    letter-spacing: 1px;
+    animation: pulsarErro 1s infinite;
+}
+
+@keyframes pulsarErro {
+    50% { opacity: 0.3; }
+}
+
+.status-box.bloqueado {
+    border-color: #ff0000 !important;
+    background: rgba(255, 0, 0, 0.1) !important;
+    pointer-events: none !important;
+}
+
+.progresso-wrapper {
+    width: 100%; height: 6px;
+    background: rgba(184, 184, 209, 0.1);
+    margin-top: 10px;
+    overflow: hidden;
+    opacity: 0; transition: opacity 0.3s ease;
+}
+
+.status-box.bloqueado .progresso-wrapper {
+    background: rgba(255, 0, 0, 0.2);
+}
+
+.barra-progresso {
+    width: 100%; height: 100%;
+    background: #ff3333;
+    transform-origin: left;
+    transform: scaleX(1);
+    transition: transform 0.1s linear, background 0.3s ease;
+}
+
+.status-box.bloqueado .barra-progresso {
+    background: #ff0000;
+}
+
+body.modo-overdrive .progresso-wrapper { opacity: 1; }
+
+.glitch-cor { animation: glitchAlien 0.3s infinite; }
+body.modo-overdrive .glitch-cor { color: #fff; }
+@keyframes glitchAlien {
+    0% { text-shadow: 2px 0 #ff4444, -2px 0 #44ff44; }
+    50% { text-shadow: -2px 0 #ff4444, 2px 0 #44ff44; }
+    100% { text-shadow: 2px 0 #44ff44, -2px 0 #ff4444; }
+}
+
+.glitch-cor.fatal {
+    color: #ff0000 !important;
+    animation: glitchFatal 0.05s infinite !important;
+    text-shadow: none !important;
+}
+
+@keyframes glitchFatal {
+    0% { transform: translate(0) }
+    20% { transform: translate(-2px, 2px) }
+    40% { transform: translate(-2px, -2px) }
+    60% { transform: translate(2px, 2px) }
+    80% { transform: translate(2px, -2px) }
+    100% { transform: translate(0) }
+}
+
+/* =========================================
+   BRASÃO GEOMÉTRICO (CORRIGIDO PARA NÃO CORTAR)
+   ========================================= */
+.marca-dagua-brasao {
+    position: fixed;
+    right: 20px; bottom: 20px; /* Margem segura para não cortar */
+    transform: translate(0, 0); /* Removido o translate positivo que o empurrava pra fora */
+    width: 45vmin; height: 45vmin; 
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0;
+    animation: upBrasao 1.5s cubic-bezier(0.2, 1, 0.2, 1) forwards 0.5s;
+}
+
+.brasao-svg { width: 100%; height: 100%; transition: transform 0.1s ease-out; }
+
+.brasao-svg .pedaco {
+    fill: none; stroke: rgba(184, 184, 209, 0.04);
+    stroke-width: 0.8; stroke-linecap: round; stroke-linejoin: round;
+    transition: stroke-width 0.3s ease;
+}
+
+.brasao-svg .p-no { stroke-width: 0.5; }
+
+@keyframes upBrasao { to { opacity: 1; transform: translate(0); } }
+
+/* 3. ABERTURA E ROTAÇÃO DO BRASÃO (Centralização Absoluta) */
+.marca-dagua-brasao.overdrive {
+    opacity: 1;
+    top: 50%; left: 50%; right: auto; bottom: auto;
+    transform: translate(-50%, -50%) scale(1.3); 
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    filter: drop-shadow(0 0 20px #ff0000);
+}
+
+.marca-dagua-brasao.overdrive .brasao-svg .pedaco { stroke: #ff3333; stroke-width: 1.5; }
+
+.marca-dagua-brasao.overdrive .g-topo {
+    transform: translateY(-40px) rotate(45deg);
+    transform-origin: center center;
+    animation: giroCaoticoTopo 2s linear infinite;
+}
+
+.marca-dagua-brasao.overdrive .g-base {
+    transform: translateY(40px) rotate(-45deg);
+    transform-origin: center center;
+    animation: giroCaoticoBase 1.5s linear infinite reverse;
+}
+
+@keyframes giroCaoticoTopo { 100% { transform: translateY(-40px) rotate(405deg); } }
+@keyframes giroCaoticoBase { 100% { transform: translateY(40px) rotate(-405deg); } }
+
+
+/* =========================================
+   ELEMENTO SCI-FI: BURACO NEGRO (GARGANTUA)
+   ========================================= */
+#background-buraco-negro {
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 150vmin; height: 150vmin;
+    background: radial-gradient(circle at center, rgba(5, 0, 0, 1) 0%, rgba(10, 0, 0, 0) 60%);
+    z-index: -3;
+    opacity: 0;
+    transition: transform 0.8s ease, opacity 0.3s ease;
+    overflow: hidden;
+}
+
+body.modo-overdrive #background-buraco-negro {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.6;
+}
+
+#anel-acrecao {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    border-radius: 50%;
+    box-shadow: 0 0 100px rgba(255, 0, 0, 0.4), inset 0 0 50px rgba(255, 0, 0, 0.8);
+    background: radial-gradient(circle at center, transparent 30%, rgba(255, 0, 0, 0.2) 60%, transparent 100%);
+    animation: pulsarBuracoNegro 8s infinite alternate;
+}
+
+@keyframes pulsarBuracoNegro {
+    50% { box-shadow: 0 0 150px rgba(255, 0, 0, 0.6), inset 0 0 80px rgba(255, 0, 0, 1); }
+}
+
+/* =========================================
+   UI DO TERMINAL (ATUALIZADO COMPACTO)
+   ========================================= */
+#terminal-alien {
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(10, 0, 0, 0.8);
+    border: 2px solid #ff0000;
+    padding: 30px;
+    z-index: 9999;
+    display: none; 
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 0 50px rgba(255, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+}
+
+#terminal-alien h3 {
+    color: #ff3333;
+    font-family: 'Rajdhani', sans-serif;
+    letter-spacing: 2px;
+    margin: 0;
+    text-shadow: 0 0 5px red;
+}
+
+#senha-alvo {
+    display: flex; gap: 15px;
+}
+
+.digito-alvo {
+    width: 40px; height: 50px;
+    border-bottom: 3px solid #550000;
+    display: flex; justify-content: center; align-items: center;
+    font-size: 2rem; color: #550000;
+}
+
+.digito-alvo.preenchido { color: #ff3333; border-color: #ff3333; text-shadow: 0 0 10px red; }
+
+#teclado-alien {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.tecla-alien {
+    background: rgba(255, 0, 0, 0.1);
+    border: 1px solid #ff3333;
+    color: #ff3333;
+    font-size: 1.5rem;
+    padding: 15px 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.tecla-alien:hover { background: #ff3333; color: #000; }
+.tecla-alien:active { transform: scale(0.9); }
+
+.choque-erro { animation: tremorTela 0.2s ease-in-out !important; box-shadow: inset 0 0 300px rgba(255, 0, 0, 0.8) !important; }
+
+/* =========================================
+   CONSEQUÊNCIA: FALHA CATASTRÓFICA E RESET
+   ========================================= */
+body.falha-catastrofica { 
+    background-color: #000 !important; 
+    overflow: hidden; 
+}
+
+body.falha-catastrofica #background-buraco-negro {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(2.5);
+    background: radial-gradient(circle at center, #ff0000 0%, #000 100%);
+    animation: tremorTela 0.3s infinite;
+}
+
+body.falha-catastrofica main, 
+body.falha-catastrofica .cabecalho-pagina { display: none !important; }
+
+
+#tela-game-over {
+    position: fixed; 
+    top: 0; left: 0; 
+    width: 100vw; height: 100vh;
+    background: rgba(0, 0, 0, 0.7); /* Fundo escuro para destacar o texto e ofuscar o fundo */
+    display: none; /* Escondido por padrão */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    padding: 20px;
+    text-align: center;
+}
+
+#tela-game-over h2 {
+    color: #ff0000; 
+    font-size: clamp(2rem, 5vw, 4rem); /* Texto responsivo: não quebra a tela! */
+    font-family: 'Rajdhani', sans-serif; 
+    font-weight: bold;
+    animation: glitchFatal 0.1s infinite;
+    text-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
+    line-height: 1.2;
+    margin-bottom: 40px; /* Espaço entre o texto e o botão */
+}
+
+/* Mostra a tela quando falha usando Flexbox */
+body.falha-catastrofica #tela-game-over {
+    display: flex;
+}
+
+/* Botão de Reset Emergencial (Agora dentro do Game Over) */
+#btn-reset-emergencia {
+    background: transparent;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 15px 30px;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+#btn-reset-emergencia:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #fff;
+    box-shadow: 0 0 15px rgba(255,255,255,0.2);
+}
+
+/* ========================================= */
+/* MUDANÇAS VISUAIS DO ALARME E GAME OVER */
+/* ========================================= */
+
+/* 1. Esconde a marca d'água e o painel de status no Game Over (Limpa a tela!) */
+body.falha-catastrofica .marca-dagua-brasao,
+body.falha-catastrofica #painel-status,
+body.falha-catastrofica main {
+    display: none !important;
+}
+
+/* 2. Efeito muito mais legal pro Triângulo durante o alarme */
+body.modo-overdrive .brasao-svg {
+    /* Cancela a rotação chata e bota um glitch agressivo */
+    animation: glitchTriangulo 0.1s infinite !important;
+    filter: drop-shadow(0 0 30px #ff0000);
+}
+body.modo-overdrive .pedaco {
+    fill: #ff0000 !important; /* Fica vermelho sangue */
+}
+
+/* Animação de Glitch pro Triângulo */
+@keyframes glitchTriangulo {
+    0% { transform: translate(5px, 5px) scale(1.2) skewX(10deg); opacity: 0.8;}
+    25% { transform: translate(-5px, -5px) scale(0.9) skewX(-10deg); opacity: 1;}
+    50% { transform: translate(5px, -5px) scale(1.1) skewY(10deg); opacity: 0.5;}
+    75% { transform: translate(-5px, 5px) scale(0.8) skewY(-10deg); opacity: 1;}
+    100% { transform: translate(0, 0) scale(1.3) skewX(0); opacity: 0.9;}
+}
+
+/* 3. Garante que o Game Over esmaga qualquer outra coisa na tela */
+#tela-game-over {
+    z-index: 999999 !important; /* Nada passa por cima disso */
+    background: radial-gradient(circle, rgba(20,0,0,0.9) 0%, rgba(0,0,0,1) 100%); /* Fundo mais sombrio */
+}
+
+/* =========================================
+   AJUSTES FINAIS: VISIBILIDADE E GLITCH EXTREMO
+   ========================================= */
+
+/* 1. Muda a cor do mouse para VERMELHO NEON no desafio e no Game Over */
+body.modo-overdrive #ponto, body.falha-catastrofica #ponto {
+    background-color: #ff3333 !important;
+    box-shadow: 0 0 10px #ff3333 !important;
+}
+body.modo-overdrive #rastro, body.falha-catastrofica #rastro {
+    border-color: rgba(255, 51, 51, 0.8) !important;
+    background-color: rgba(255, 51, 51, 0.1) !important;
+}
+
+/* 2. Mata o giro chato do Brasão e adiciona Glitch Agressivo */
+body.modo-overdrive .g-topo, 
+body.modo-overdrive .g-base {
+    animation: none !important; /* Para de girar */
+    transform: none !important;
+}
+
+body.modo-overdrive .brasao-svg {
+    animation: glitchTriangulo 0.1s infinite !important; /* Começa a tremer */
+    filter: drop-shadow(0 0 40px #ff0000) !important;
+}
+
+body.modo-overdrive .pedaco {
+    stroke: #ff3333 !important;
+    stroke-width: 2.5 !important; /* Fica muito mais grosso e visível */
+}
+
+@keyframes glitchTriangulo {
+    0% { transform: scale(1.5) translate(5px, 5px) skewX(15deg); opacity: 0.8;}
+    25% { transform: scale(1.3) translate(-5px, -5px) skewX(-15deg); opacity: 1;}
+    50% { transform: scale(1.6) translate(5px, -5px) skewY(15deg); opacity: 0.5;}
+    75% { transform: scale(1.4) translate(-5px, 5px) skewY(-15deg); opacity: 1;}
+    100% { transform: scale(1.5) translate(0, 0) skewX(0); opacity: 0.9;}
+}
+
+/* 3. Limpa a tela de Game Over (Esconde o triângulo e a UI de trás) */
+body.falha-catastrofica .marca-dagua-brasao,
+body.falha-catastrofica main,
+body.falha-catastrofica .cabecalho-pagina {
+    display: none !important; 
+}
+
+/* =========================================
+   FORÇA O MOUSE A FICAR ACIMA DE TUDO
+   ========================================= */
+#ponto, #rastro {
+    z-index: 9999999 !important; /* Um número absurdamente alto para passar a tela de Game Over */
+}
+
