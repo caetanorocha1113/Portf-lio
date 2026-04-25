@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelagem | Caetano Rocha</title>
+    
+    <link rel="icon" type="image/png" href="logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <div id="ruido"></div>
+    <div id="ponto"></div>
+    <div id="rastro"></div>
+
+    <div id="tela-azul">
+        <h2>Windows</h2>
+        <p>A fatal exception 0E has occurred at 028:C0011E36 in UXD CAETANO(01).<br>The current application will be terminated.</p>
+        <p>* Press any key to terminate the current application.<br>* Press CTRL+ALT+DEL again to restart your computer.<br>* You lose any unsaved information in all applications.</p>
+        <p style="text-align: center; margin-top: 50px;">Press any key to continue _</p>
+    </div>
+
+    <div class="marca-dagua-brasao">
+        <svg class="brasao-svg" viewBox="0 0 100 100">
+            <rect class="pedaco" x="35" y="20" width="30" height="15" fill="none" stroke-width="1"/>
+            <path class="pedaco" d="M50,35 L50,50 M25,50 L75,50 M25,50 L25,65 M75,50 L75,65" fill="none" stroke-width="1"/>
+            <rect class="pedaco" x="10" y="65" width="30" height="15" fill="none" stroke-width="1"/>
+            <rect class="pedaco" x="60" y="65" width="30" height="15" fill="none" stroke-width="1"/>
+        </svg>
+    </div>
+
+    <header>
+        <div class="logo-box link-mag">
+            <a href="index.html" style="text-decoration: none;">
+                <svg class="logo-svg" viewBox="0 0 100 100">
+                    <polygon class="p-top-c" points="40,25 70,25 80,35"/>
+                    <polygon class="p-left-c" points="30,35 40,35 40,65 30,65"/>
+                    <polygon class="p-bottom-c" points="40,75 70,75 80,65"/>
+                </svg>
+            </a>
+        </div>
+        <button class="btn-menu link-mag" id="btn-menu">
+            <svg class="triangulo" viewBox="0 0 100 100">
+                <polygon class="pedaco p-top" points="50,15 65,45 35,45"/>
+                <polygon class="pedaco p-left" points="35,45 50,75 20,75"/>
+                <polygon class="pedaco p-right" points="65,45 80,75 50,75"/>
+            </svg>
+        </button>
+    </header>
+
+    <div class="tela-links" id="tela-links">
+        <ul class="nav-links">
+            <li><a href="index.html" class="link-mag"><span class="num">01.</span> início</a></li>
+            <li><a href="linguagens.html" class="link-mag"><span class="num">02.</span> Linguagens</a></li>
+            <li><a href="natureza.html" class="link-mag"><span class="num">03.</span> Natureza</a></li>
+            <li><a href="humanas.html" class="link-mag"><span class="num">04.</span> Humanas</a></li>
+            <li><a href="matematica.html" class="link-mag"><span class="num">05.</span> Matemática</a></li>
+            
+            <li class="item-retratil">
+                <button id="btn-tecnico-menu" class="link-mag btn-menu-gigante ativo">
+                    <span class="num">06.</span> Técnico
+                </button>
+                <ul id="sub-menu-tecnico" class="sub-menu revelado">
+                    <li><a href="modelagem.html" class="link-mag">- Modelagem</a></li>
+                    <li><a href="iot.html" class="link-mag">- IoT</a></li>
+                    <li><a href="banco-dados.html" class="link-mag">- Banco de Dados</a></li>
+                    <li><a href="desenvolvimento.html" class="link-mag">- Desenvolvimento</a></li>
+                </ul>
+            </li>
+            <li><a href="sobre.html" class="link-mag"><span class="num">07.</span> Sobre mim</a></li>
+        </ul>
+    </div>
+
+    <main class="area-tecnica">
+        <div class="barra-topo-status">
+            <div class="info-principal" style="position: relative;">
+                <span class="tag-arquivo">SISTEMA // 1º TRIMESTRE</span>
+                <h1>Modelagem <br> de <span style="opacity: 0.3">Sistemas</span></h1>
+                <span class="dica-sistema">[ cmd_req: 'sys' ]</span>
+            </div>
+        </div>
+
+        <div class="grade-atividades">
+            
+            <article class="card-modelagem link-mag">
+                <div class="container-img"><img src="https://via.placeholder.com/400x200/222/555?text=IMAGEM+AQUI" alt="Preview"></div>
+                <div class="info-card">
+                    <span class="num-doc">REF: MOD_01</span>
+                    <h3 class="titulo-card">Diagrama de Casos de Uso</h3>
+                    <div class="tags-habilidades"><span class="tag-skill">h1-analisar requisitos</span><span class="tag-skill">h2-mapear interações</span></div>
+                    <div class="detalhes-atv">Nesta etapa desenvolvemos a abstração dos processos do sistema utilizando a metodologia UML.</div>
+                    <button class="btn-expandir">DETALHES</button>
+                </div>
+            </article>
+
+            <article class="card-modelagem link-mag">
+                <div class="container-img"><img src="https://via.placeholder.com/400x200/222/555?text=IMAGEM+AQUI" alt="Preview"></div>
+                <div class="info-card">
+                    <span class="num-doc">REF: MOD_02</span>
+                    <h3 class="titulo-card">Arquitetura de Classes</h3>
+                    <div class="tags-habilidades"><span class="tag-skill">h1-orientação a objetos</span><span class="tag-skill">h2-estruturar dados</span></div>
+                    <div class="detalhes-atv">Desenvolvimento lógico das entidades do sistema. Aplicação de conceitos de herança e polimorfismo.</div>
+                    <button class="btn-expandir">DETALHES</button>
+                </div>
+            </article>
+
+            <article class="card-modelagem link-mag">
+                <div class="container-img"><img src="https://via.placeholder.com/400x200/222/555?text=IMAGEM+AQUI" alt="Preview"></div>
+                <div class="info-card">
+                    <span class="num-doc">REF: MOD_03</span>
+                    <h3 class="titulo-card">Modelo Lógico (DER)</h3>
+                    <div class="tags-habilidades"><span class="tag-skill">h1-normalizar tabelas</span><span class="tag-skill">h2-integridade de banco</span></div>
+                    <div class="detalhes-atv">Criação do Diagrama Entidade-Relacionamento para garantir a consistência no armazenamento de informações.</div>
+                    <button class="btn-expandir">DETALHES</button>
+                </div>
+            </article>
+
+            <article class="card-modelagem link-mag" id="projeto-secreto">
+                <div class="container-img">
+                    <img src="https://via.placeholder.com/400x200/ff0000/000?text=CLASSIFIED" alt="Classified" style="filter: grayscale(0) invert(1);">
+                </div>
+                <div class="info-card">
+                    <span class="num-doc" style="color: #ff3333;">! WARN: ACCESS_GRANTED</span>
+                    <h3 class="titulo-card">Projeto Overdrive</h3>
+                    <div class="tags-habilidades">
+                        <span class="tag-skill">h1-root access</span>
+                        <span class="tag-skill">h2-bypassing limits</span>
+                    </div>
+                    <div class="detalhes-atv" style="color: #ff9999;">
+                        [DADOS CORROMPIDOS] Tentativa de mapear a arquitetura neural do sistema. Risco crítico de sobrecarga. Desligamento manual recomendado.
+                    </div>
+                    <span class="texto-alerta-vermelho" id="timer-destruicao"></span>
+                    <button class="btn-expandir" id="btn-fujao" style="border-color: #ff3333; color: #ff3333; margin-top: 15px; font-weight: bold;">VER REGISTROS</button>
+                </div>
+            </article>
+
+        </div>
+    </main>
+
+    <script>
+        // CURSOR
+        const ponto = document.getElementById('ponto');
+        const rastro = document.getElementById('rastro');
+        let mouseX = window.innerWidth / 2; let mouseY = window.innerHeight / 2;
+        let rX = mouseX, rY = mouseY;
+
+        window.addEventListener('mousemove', e => {
+            mouseX = e.clientX; mouseY = e.clientY;
+            ponto.style.transform = `translate3d(calc(${mouseX}px - 50%), calc(${mouseY}px - 50%), 0)`;
+        });
+
+        function animar() {
+            rX += (mouseX - rX) * 0.12; rY += (mouseY - rY) * 0.12;
+            rastro.style.transform = `translate3d(calc(${rX}px - 50%), calc(${rY}px - 50%), 0)`;
+            requestAnimationFrame(animar);
+        }
+        animar();
+
+        // MENU
+        const btnMenu = document.getElementById('btn-menu');
+        const telaLinks = document.getElementById('tela-links');
+        const btnTecnicoMenu = document.getElementById('btn-tecnico-menu');
+        const subMenuTecnico = document.getElementById('sub-menu-tecnico');
+
+        btnMenu.addEventListener('click', () => {
+            btnMenu.classList.toggle('aberto');
+            telaLinks.classList.toggle('visivel');
+        });
+
+        if (btnTecnicoMenu) {
+            btnTecnicoMenu.addEventListener('click', () => {
+                btnTecnicoMenu.classList.toggle('ativo');
+                subMenuTecnico.classList.toggle('revelado');
+            });
+        }
+
+        // EXPANDIR CARDS (Apenas os normais)
+        document.querySelectorAll('.card-modelagem:not(#projeto-secreto)').forEach(card => {
+            const btn = card.querySelector('.btn-expandir');
+            btn.addEventListener('click', () => {
+                card.classList.toggle('aberto');
+                btn.textContent = card.classList.contains('aberto') ? 'FECHAR' : 'DETALHES';
+            });
+        });
+
+        // ========================================================
+        // EASTER EGG VIP: CAOS COMPLETO
+        // ========================================================
+        const codigoSecreto = "sys"; 
+        let digitado = "";
+        let sistemaCorrompido = false;
+
+        function efeitoDesencriptar(elemento, textoFinal) {
+            const letrasHack = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*<>";
+            let iteracoes = 0;
+            const intervalo = setInterval(() => {
+                elemento.innerText = textoFinal.split("").map((letra, index) => {
+                    if(index < iteracoes) { return textoFinal[index]; }
+                    return letrasHack[Math.floor(Math.random() * letrasHack.length)];
+                }).join("");
+                if(iteracoes >= textoFinal.length) { clearInterval(intervalo); }
+                iteracoes += 1 / 2;
+            }, 30);
+        }
+
+        window.addEventListener("keydown", (e) => {
+            if(sistemaCorrompido) return; // Trava o teclado se já ativou
+            if(e.key.length > 1) return; 
+
+            digitado += e.key.toLowerCase();
+            if (digitado.length > codigoSecreto.length) {
+                digitado = digitado.slice(-codigoSecreto.length);
+            }
+
+            if (digitado === codigoSecreto) {
+                sistemaCorrompido = true;
+                const cardSecreto = document.getElementById('projeto-secreto');
+                const btnFujao = document.getElementById('btn-fujao');
+                const timerTexto = document.getElementById('timer-destruicao');
+                const telaAzul = document.getElementById('tela-azul');
+                
+                cardSecreto.style.display = 'flex'; 
+                document.body.style.transform = "translateY(5px)";
+                setTimeout(() => { document.body.style.transform = "none"; }, 50);
+                
+                document.body.classList.add('override-ativo');
+                setTimeout(() => { cardSecreto.scrollIntoView({behavior: "smooth", block: "center"}); }, 300);
+
+                const titulo = cardSecreto.querySelector('.titulo-card');
+                const desc = cardSecreto.querySelector('.detalhes-atv');
+                
+                efeitoDesencriptar(titulo, "CRITICAL ERROR: SYSTEM_OVERRIDE");
+                setTimeout(() => { efeitoDesencriptar(desc, "Ruptura iminente no banco de dados. Os processos falharam em conter a anomalia."); }, 500);
+
+                // Inicia contagem e muda o botão
+                setTimeout(() => {
+                    btnFujao.innerText = "CANCELAR AUTODESTRUIÇÃO";
+                    let tempo = 10;
+                    
+                    const intervaloTimer = setInterval(() => {
+                        timerTexto.innerText = `[ FALHA DO SISTEMA EM: 00:0${tempo} ]`;
+                        tempo--;
+
+                        // Se o tempo acabar... TELA AZUL!
+                        if(tempo < 0) {
+                            clearInterval(intervaloTimer);
+                            telaAzul.style.display = 'block';
+                            document.getElementById('ponto').style.display = 'none'; // Some com o mouse customizado
+                            document.getElementById('rastro').style.display = 'none';
+                        }
+                    }, 1000);
+                }, 1500);
+
+                // Lógica do botão fujão
+                btnFujao.addEventListener('mouseenter', function() {
+                    // Joga o botão aleatoriamente num raio de X e Y
+                    const moveX = (Math.random() - 0.5) * 300; 
+                    const moveY = (Math.random() - 0.5) * 150; 
+                    this.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                    this.style.transition = "transform 0.15s ease-out";
+                });
+
+                // Se o cara for UM NINJA e conseguir clicar:
+                btnFujao.addEventListener('click', function() {
+                    alert("ACESSO NEGADO. VOCÊ NÃO TEM PODER AQUI.");
+                });
+            }
+        });
+
+        // Tira a tela azul se apertar alguma tecla (para a pessoa não ficar presa)
+        window.addEventListener("keydown", (e) => {
+            const telaAzul = document.getElementById('tela-azul');
+            if (telaAzul.style.display === 'block') {
+                location.reload(); // Recarrega a página inteira, simulando o "reiniciar"
+            }
+        });
+    </script>
+</body>
+</html>

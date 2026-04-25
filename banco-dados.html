@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco de Dados | Caetano Rocha</title>
+    
+    <link rel="icon" type="image/png" href="logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="ruido"></div>
+    <div id="ponto"></div>
+    <div id="rastro"></div>
+
+    <div id="sql-terminal">
+        <div class="sql-header">
+            <span>TERMINAL DE ACESSO REMOTO v3.0 // NODE_02: DATABASE</span>
+            <span id="sql-status">[ STATUS: PORTA 5432 ABERTA ]</span>
+        </div>
+        
+        <div id="sql-logs"></div>
+
+        <div class="sql-prompt-container" id="sql-linha-comando" style="display: none;">
+            <span class="sql-prompt">admin@node02=></span>
+            <input type="text" id="sql-input" autocomplete="off" spellcheck="false" autofocus>
+        </div>
+        
+        <p style="margin-top: 40px; font-size: 0.8rem; opacity: 0.3;">Pressione [ESC] para encerrar a sessão no banco de dados.</p>
+    </div>
+
+    <div class="marca-dagua-brasao">
+        <svg class="brasao-svg" viewBox="0 0 100 100">
+            <rect class="pedaco" x="35" y="20" width="30" height="15" fill="none" stroke-width="1"/>
+            <path class="pedaco" d="M50,35 L50,50 M25,50 L75,50 M25,50 L25,65 M75,50 L75,65" fill="none" stroke-width="1"/>
+            <rect class="pedaco" x="10" y="65" width="30" height="15" fill="none" stroke-width="1"/>
+            <rect class="pedaco" x="60" y="65" width="30" height="15" fill="none" stroke-width="1"/>
+        </svg>
+    </div>
+
+    <header>
+        <div class="logo-box link-mag">
+            <a href="index.html" style="text-decoration: none;">
+                <svg class="logo-svg" viewBox="0 0 100 100">
+                    <polygon class="p-top-c" points="40,25 70,25 80,35"/>
+                    <polygon class="p-left-c" points="30,35 40,35 40,65 30,65"/>
+                    <polygon class="p-bottom-c" points="40,75 70,75 80,65"/>
+                </svg>
+            </a>
+        </div>
+        <button class="btn-menu link-mag" id="btn-menu">
+            <svg class="triangulo" viewBox="0 0 100 100">
+                <polygon class="pedaco p-top" points="50,15 65,45 35,45"/>
+                <polygon class="pedaco p-left" points="35,45 50,75 20,75"/>
+                <polygon class="pedaco p-right" points="65,45 80,75 50,75"/>
+            </svg>
+        </button>
+    </header>
+
+    <div class="tela-links" id="tela-links">
+        <ul class="nav-links">
+            <li><a href="index.html" class="link-mag"><span class="num">01.</span> Home</a></li>
+            <li><a href="linguagens.html" class="link-mag"><span class="num">02.</span> Linguagens</a></li>
+            <li><a href="natureza.html" class="link-mag"><span class="num">03.</span> Natureza</a></li>
+            <li><a href="humanas.html" class="link-mag"><span class="num">04.</span> Humanas</a></li>
+            <li><a href="matematica.html" class="link-mag"><span class="num">05.</span> Matemática</a></li>
+            <li class="item-retratil">
+                <button id="btn-tecnico-menu" class="link-mag btn-menu-gigante ativo">
+                    <span class="num">06.</span> Técnico
+                </button>
+                <ul id="sub-menu-tecnico" class="sub-menu revelado">
+                    <li><a href="modelagem.html" class="link-mag">- Modelagem</a></li>
+                    <li><a href="iot.html" class="link-mag">- IoT</a></li>
+                    <li><a href="banco-dados.html" class="link-mag">- Banco de Dados</a></li>
+                    <li><a href="desenvolvimento.html" class="link-mag">- Desenvolvimento</a></li>
+                </ul>
+            </li>
+            <li><a href="sobre.html" class="link-mag"><span class="num">07.</span> Sobre mim</a></li>
+        </ul>
+    </div>
+
+    <main class="area-tecnica">
+        <div class="barra-topo-status">
+            <div class="info-principal" style="position: relative;">
+                <span class="tag-arquivo">INFRAESTRUTURA // 1º TRIMESTRE</span>
+                <h1>Banco de <br> <span style="opacity: 0.3">Dados</span></h1>
+                <span class="dica-sistema">[ execute_query: 'sql' ]</span>
+            </div>
+        </div>
+
+        <div class="grade-atividades">
+            <article class="card-modelagem link-mag">
+            <div class="container-img"><img src="SUA_IMAGEM_AQUI.jpg" alt="Preview SQL"></div>
+            <div class="info-card">
+                <span class="num-doc">REF: DB_02</span>
+                <h3 class="titulo-card">Linguagem SQL (DDL e DML)</h3>
+                <div class="tags-habilidades"><span class="tag-skill">h1-scripts sql</span><span class="tag-skill">h2-operações crud</span></div>
+                <div class="detalhes-atv">Criação física das tabelas no SGBD utilizando comandos DDL. Manipulação e inserção de registros com comandos DML.</div>
+                <button class="btn-expandir">DETALHES</button>
+            </div>
+        </article>
+
+            <article class="card-modelagem link-mag">
+                <div class="container-img"><img src="SUA_IMAGEM_AQUI.jpg" alt="Preview SQL"></div>
+                <div class="info-card">
+                    <span class="num-doc">REF: DB_02</span>
+                    <h3 class="titulo-card">Linguagem SQL (DDL e DML)</h3>
+                    <div class="tags-habilidades"><span class="tag-skill">h1-scripts sql</span><span class="tag-skill">h2-operações crud</span></div>
+                    <div class="detalhes-atv">Criação física das tabelas no SGBD utilizando comandos DDL. Manipulação e inserção de registos com comandos DML.</div>
+                    <button class="btn-expandir">DETALHES</button>
+                </div>
+            </article>
+
+            <article class="card-modelagem link-mag">
+                <div class="container-img"><img src="SUA_IMAGEM_AQUI.jpg" alt="Preview JOIN"></div>
+                <div class="info-card">
+                    <span class="num-doc">REF: DB_03</span>
+                    <h3 class="titulo-card">Consultas Avançadas</h3>
+                    <div class="tags-habilidades"><span class="tag-skill">h1-inner join</span><span class="tag-skill">h2-subqueries</span></div>
+                    <div class="detalhes-atv">Extração de relatórios complexos cruzando dados de múltiplas tabelas simultaneamente através de JOINs e funções de agregação.</div>
+                    <button class="btn-expandir">DETALHES</button>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <script>
+        // CURSORES E MENUS 
+        const ponto = document.getElementById('ponto'); const rastro = document.getElementById('rastro');
+        let mouseX = window.innerWidth / 2; let mouseY = window.innerHeight / 2; let rX = mouseX, rY = mouseY;
+        window.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; ponto.style.transform = `translate3d(calc(${mouseX}px - 50%), calc(${mouseY}px - 50%), 0)`; });
+        function animar() { rX += (mouseX - rX) * 0.12; rY += (mouseY - rY) * 0.12; rastro.style.transform = `translate3d(calc(${rX}px - 50%), calc(${rY}px - 50%), 0)`; requestAnimationFrame(animar); }
+        animar();
+
+        const btnMenu = document.getElementById('btn-menu'); const telaLinks = document.getElementById('tela-links');
+        const btnTecnicoMenu = document.getElementById('btn-tecnico-menu'); const subMenuTecnico = document.getElementById('sub-menu-tecnico');
+        btnMenu.addEventListener('click', () => { btnMenu.classList.toggle('aberto'); telaLinks.classList.toggle('visivel'); });
+        if (btnTecnicoMenu) { btnTecnicoMenu.addEventListener('click', () => { btnTecnicoMenu.classList.toggle('ativo'); subMenuTecnico.classList.toggle('revelado'); }); }
+
+        document.querySelectorAll('.card-modelagem').forEach(card => {
+            const btn = card.querySelector('.btn-expandir');
+            btn.addEventListener('click', () => { card.classList.toggle('aberto'); btn.textContent = card.classList.contains('aberto') ? 'FECHAR' : 'DETALHES'; });
+        });
+
+        // ========================================================
+        // EASTER EGG BD: TERMINAL SQL (LIGADO AO IOT)
+        // ========================================================
+        const codigoDb = "sql"; 
+        let digitado = "";
+        let terminalSqlAtivo = false;
+        let despejoDadosRodando = false;
+
+        const terminal = document.getElementById('sql-terminal');
+        const logs = document.getElementById('sql-logs');
+        const linhaComando = document.getElementById('sql-linha-comando');
+        const inputComando = document.getElementById('sql-input');
+
+        function printLog(texto, classe = "sql-linha") {
+            const p = document.createElement('div');
+            p.className = classe;
+            p.innerHTML = texto;
+            logs.appendChild(p);
+            terminal.scrollTop = terminal.scrollHeight;
+        }
+
+        window.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && terminalSqlAtivo) {
+                terminal.style.display = 'none';
+                terminalSqlAtivo = false; despejoDadosRodando = false;
+                logs.innerHTML = '';
+                linhaComando.style.display = 'none';
+                return;
+            }
+
+            if(terminalSqlAtivo) {
+                inputComando.focus(); 
+                return; 
+            }
+
+            if(e.key.length > 1) return; 
+
+            digitado += e.key.toLowerCase();
+            if (digitado.length > codigoDb.length) digitado = digitado.slice(-codigoDb.length);
+
+            if (digitado === codigoDb) {
+                terminalSqlAtivo = true;
+                terminal.style.display = 'block';
+                
+                printLog("> Estabelecendo conexão com o cluster de dados...");
+                setTimeout(() => {
+                    printLog("> Conexão segura estabelecida. Roteando para NODE_02.");
+                    printLog("> Terminal de queries ativado. Digite <b>help</b> para comandos.");
+                    linhaComando.style.display = 'flex';
+                    inputComando.focus();
+                }, 800);
+            }
+        });
+
+        inputComando.addEventListener("keydown", function(e) {
+            if(e.key === "Enter") {
+                const entradaStr = this.value.trim();
+                const comandoLower = entradaStr.toLowerCase();
+                if(entradaStr === "") return;
+                
+                printLog(`admin@node02=> ${entradaStr}`, "sql-linha");
+                this.value = "";
+
+                if(despejoDadosRodando) {
+                    printLog("> ERRO: Consulta em andamento. Aguarde.", "sql-alerta");
+                    return;
+                }
+
+                if (comandoLower === "help") {
+                    printLog("COMANDOS SUPORTADOS:<br>- <b>\\dt</b> : Lista as tabelas ativas.<br>- <b>SELECT * FROM [tabela]</b> : Retorna os dados da tabela.<br>- <b>clear</b> : Limpa a interface.<br>- <b>exit</b> : Desconecta do nó.");
+                } 
+                else if (comandoLower === "\\dt") {
+                    const tabelaHtml = `
+                    <table class="sql-tabela">
+                        <tr><th>Esquema</th><th>Nome</th><th>Acesso</th></tr>
+                        <tr><td>public</td><td>tb_alunos</td><td>admin</td></tr>
+                        <tr><td>public</td><td>tb_atividades</td><td>admin</td></tr>
+                        <tr><td>public</td><td>tb_notas</td><td>admin</td></tr>
+                        <tr><td>restricted</td><td>tb_projeto_icaro</td><td>root</td></tr>
+                    </table>`;
+                    printLog(tabelaHtml);
+                    printLog("(4 tabelas localizadas)");
+                }
+                else if (comandoLower === "clear") {
+                    logs.innerHTML = '';
+                }
+                else if (comandoLower === "exit") {
+                    printLog("> Encerrando túnel SSH...");
+                    setTimeout(() => {
+                        terminal.style.display = 'none';
+                        terminalSqlAtivo = false;
+                        logs.innerHTML = '';
+                        linhaComando.style.display = 'none';
+                    }, 500);
+                }
+                else if (comandoLower.startsWith("select * from")) {
+                    const tabelaAlvo = comandoLower.replace("select * from", "").replace(";", "").trim();
+                    
+                    if (tabelaAlvo === "tb_alunos" || tabelaAlvo === "tb_atividades" || tabelaAlvo === "tb_notas") {
+                        printLog(`> Executando extração em ${tabelaAlvo}...`);
+                        setTimeout(() => printLog("> 0 ROWS RETURNED. A tabela foi limpa pelo sistema I.A.", "sql-alerta"), 500);
+                    } 
+                    else if (tabelaAlvo === "tb_projeto_icaro") {
+                        despejoDadosRodando = true;
+                        linhaComando.style.display = 'none';
+                        printLog("> AVISO: Quebrando criptografia AES-256...", "sql-alerta");
+                        
+                        setTimeout(() => {
+                            let iteracoes = 0;
+                            const maxIteracoes = 40;
+                            const caracteres = "0123456789ABCDEF!@#$%&*()_+{}[]";
+                            
+                            const loopDump = setInterval(() => {
+                                let lixoStr = "";
+                                for(let i=0; i<80; i++) {
+                                    lixoStr += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
+                                }
+                                printLog(`0x${(1000 + iteracoes).toString(16).toUpperCase()} : ${lixoStr}`, "sql-dump");
+                                
+                                iteracoes++;
+                                if(iteracoes >= maxIteracoes) {
+                                    clearInterval(loopDump);
+                                    despejoDadosRodando = false;
+                                    linhaComando.style.display = 'flex';
+                                    inputComando.focus();
+                                    
+                                    const tabelaSecreta = `
+                                    <br><span style="color:#fff;">[ DESENCRIPTAÇÃO CONCLUÍDA ]</span>
+                                    <table class="sql-tabela" style="border-color:#ff3333;">
+                                        <tr><th style="background:rgba(255,51,51,0.2);color:#ff3333;">ID_PROJETO</th><th style="background:rgba(255,51,51,0.2);color:#ff3333;">STATUS</th><th style="background:rgba(255,51,51,0.2);color:#ff3333;">LOG_SISTEMA</th></tr>
+                                        <tr><td>001_OVERDRIVE</td><td>FALHOU</td><td>O módulo físico derreteu após ativação manual (NODE_01).</td></tr>
+                                        <tr><td>002_ICARO</td><td>ATIVO</td><td>A IA transferiu o código base para este servidor.</td></tr>
+                                        <tr><td>003_BD_BACKUP</td><td>EXPURGADO</td><td>Todos os dados de alunos foram apagados por segurança.</td></tr>
+                                    </table>`;
+                                    printLog(tabelaSecreta);
+                                }
+                            }, 50); 
+                        }, 1000);
+                    } else {
+                        printLog(`> ERRO: Tabela "${tabelaAlvo}" não existe no esquema atual.`, "sql-alerta");
+                    }
+                }
+                else {
+                    printLog(`> SYNTAX ERROR no comando "${entradaStr}".`);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

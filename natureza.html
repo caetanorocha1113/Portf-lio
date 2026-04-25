@@ -50,17 +50,28 @@
         </button>
     </header>
         
-    <div id="tela-links">
-    <nav class="links-principais">
-        <a href="index.html" class="link-mag" data-texto="Início">Início</a>
-        <a href="humanas.html" class="link-mag" data-texto="Ciências Humanas">Ciências Humanas</a>
-        <a href="linguagens.html" class="link-mag" data-texto="Linguagens">Linguagens</a>
-        <a href="natureza.html" class="link-mag ativo" data-texto="Natureza">Natureza</a>
-        <a href="matematica.html" class="link-mag" data-texto="Matemática">Matemática</a>
-        
-        <a href="tecnico.html" class="link-mag" data-texto="Técnico">Técnico</a>
-    </nav>
-</div>
+        <div class="tela-links" id="tela-links">
+        <ul class="nav-links">
+            <li><a href="index.html" class="link-mag"><span class="num">01.</span> Início</a></li>
+            <li><a href="humanas.html" class="link-mag"><span class="num">02.</span> Humanas</a></li>
+            <li><a href="linguagens.html" class="link-mag"><span class="num">03.</span> Linguagens</a></li>
+            <li><a href="natureza.html" class="link-mag"><span class="num">04.</span> Natureza</a></li>
+            <li><a href="matematica.html" class="link-mag"><span class="num">05.</span> Matemática</a></li>
+            
+            <li class="item-retratil">
+                <button id="btn-tecnico-menu" class="link-mag btn-menu-gigante">
+                    <span class="num">06.</span> Técnico
+                </button>
+                <ul id="sub-menu-tecnico" class="sub-menu">
+                    <li><a href="modelagem.html" class="link-mag">- Modelagem de Sistemas</a></li>
+                    <li><a href="iot.html" class="link-mag">- IoT</a></li>
+                    <li><a href="banco-dados.html" class="link-mag">- Banco de Dados</a></li>
+                    <li><a href="desenvolvimento.html" class="link-mag">- Desenvolvimento de Sistemas</a></li>
+                </ul>
+            </li>
+            <li><a href="sobre.html" class="link-mag"><span class="num">07.</span> Sobre mim</a></li>
+        </ul>
+    </div>
 
     <main class="pagina-interna">
 
@@ -225,8 +236,9 @@
     let rastroX = mouseX, rastroY = mouseY;
 
     window.addEventListener('mousemove', e => {
-        mouseX = e.clientX; mouseY = e.clientY;
-        if(ponto) ponto.style.transform = `translate3d(calc(${mouseX}px - 50%), calc(${mouseY}px - 50%), 0)`;
+        mouseX = e.clientX; 
+        mouseY = e.clientY;
+        ponto.style.transform = `translate3d(calc(${mouseX}px - 50%), calc(${mouseY}px - 50%), 0)`;
         
         const brasaoSvg = document.querySelector('.brasao-svg');
         if (brasaoSvg && !document.body.classList.contains('modo-overdrive')) {
@@ -237,11 +249,26 @@
     });
 
     function animarRastro() {
-        rastroX += (mouseX - rastroX) * 0.15; rastroY += (mouseY - rastroY) * 0.15;
-        if(rastro) rastro.style.transform = `translate3d(calc(${rastroX}px - 50%), calc(${rastroY}px - 50%), 0)`;
+        rastroX += (mouseX - rastroX) * 0.15; 
+        rastroY += (mouseY - rastroY) * 0.15;
+        rastro.style.transform = `translate3d(calc(${rastroX}px - 50%), calc(${rastroY}px - 50%), 0)`;
         requestAnimationFrame(animarRastro);
     }
     animarRastro();
+
+    linksMag.forEach(link => {
+        link.addEventListener('mouseenter', () => rastro.classList.add('ativo'));
+        link.addEventListener('mouseleave', () => {
+            rastro.classList.remove('ativo');
+            link.style.transform = `translate(0px, 0px)`;
+        });
+        link.addEventListener('mousemove', (e) => {
+            const caixa = link.getBoundingClientRect();
+            const x = e.clientX - caixa.left - caixa.width / 2;
+            const y = e.clientY - caixa.top - caixa.height / 2;
+            link.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
+        });
+    });
 
     const btnMenu = document.getElementById('btn-menu');
     const telaLinks = document.getElementById('tela-links');
@@ -252,6 +279,15 @@
         });
     }
 
+    const btnTecnicoMenu = document.getElementById('btn-tecnico-menu');
+    const subMenuTecnico = document.getElementById('sub-menu-tecnico');
+    if (btnTecnicoMenu) {
+        btnTecnicoMenu.addEventListener('click', () => {
+            btnTecnicoMenu.classList.toggle('ativo');
+            subMenuTecnico.classList.toggle('revelado');
+        });
+    }
+
     const botoesTrimestre = document.querySelectorAll('.btn-trimestre');
     const paineisTrimestre = document.querySelectorAll('.trimestre-painel');
     botoesTrimestre.forEach(botao => {
@@ -259,7 +295,10 @@
             botoesTrimestre.forEach(b => b.classList.remove('ativo'));
             paineisTrimestre.forEach(p => p.classList.remove('ativo'));
             botao.classList.add('ativo');
-            document.getElementById(botao.getAttribute('data-alvo'))?.classList.add('ativo');
+            const alvo = botao.getAttribute('data-alvo');
+            if (document.getElementById(alvo)) {
+                document.getElementById(alvo).classList.add('ativo');
+            }
         });
     });
 

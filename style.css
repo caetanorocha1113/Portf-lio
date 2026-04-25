@@ -1237,3 +1237,794 @@ body.falha-catastrofica .cabecalho-pagina {
     z-index: 9999999 !important; /* Um número absurdamente alto para passar a tela de Game Over */
 }
 
+
+/* O botão de fechar também precisa estar acessível */
+#btn-menu {
+    z-index: 10000 !important; /* O botão fica acima até mesmo do menu aberto */
+}
+
+@media (max-width: 768px) {
+    .links-principais {
+        padding-top: 120px !important; /* Aumenta o espaço no topo apenas em telas menores */
+        justify-content: flex-start !important; /* Alinha os itens no topo para não sumirem no rodapé */
+        overflow-y: auto; /* Permite rolar o menu se ele for maior que a tela do celular */
+        height: 100vh;
+    }
+
+    /* Se o item "Início" ainda estiver difícil de clicar */
+    .links-principais a:first-child {
+        margin-top: 20px;
+    }
+}
+
+/* ESTILO DA FOTO CIRCULAR (CINZA ESTILO MENU) */
+        .moldura-foto-circular {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .circulo-interno {
+            width: 140px;
+            height: 140px;
+            background: #444; /* Cinza do estilo menu */
+            border-radius: 50%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            z-index: 2;
+        }
+
+        .circulo-interno img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%);
+        }
+
+        .placeholder-avatar {
+            width: 60%;
+            opacity: 0.5;
+        }
+
+        /* Borda decorativa que lembra o logo */
+        .borda-rotativa {
+            position: absolute;
+            width: 160px;
+            height: 160px;
+            border: 1px solid #00ffcc;
+            border-radius: 50%;
+            border-style: dashed;
+            animation: girarLento 20s linear infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes girarLento {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Ajuste das Tags de Formação */
+        .skill-tag {
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 3px solid #00ffcc;
+            padding: 8px 15px;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 0.9rem;
+            color: #ccc;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+         body { background-color: #2b2b33; overflow-y: auto; }
+
+        .area-tecnica {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 140px 20px 80px;
+        }
+
+        .barra-topo-status {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+
+        .info-principal h1 {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: clamp(2rem, 8vw, 3.5rem);
+            text-transform: uppercase;
+            line-height: 1;
+            color: #fff;
+        }
+
+        .tag-arquivo {
+            font-size: 0.7rem;
+            letter-spacing: 4px;
+            color: #666;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        /* GRADE DE ATIVIDADES */
+        .grade-atividades {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .card-modelagem {
+            background: #312b38;
+            border: 1px solid rgba(255,255,255,0.05);
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-modelagem:hover {
+            border-color: rgba(255,255,255,0.2);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+        }
+
+        /* Espaço da Imagem */
+        .container-img {
+            width: 100%;
+            height: 180px;
+            background: #222;
+            overflow: hidden;
+            position: relative;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .container-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.6;
+            filter: grayscale(100%) contrast(120%);
+            transition: 0.5s;
+        }
+
+        .card-modelagem:hover .container-img img {
+            opacity: 1;
+            filter: grayscale(0%) contrast(100%);
+            transform: scale(1.05);
+        }
+
+        .info-card { padding: 25px; }
+
+        .num-doc {
+            font-family: monospace;
+            font-size: 0.65rem;
+            color: #666;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .titulo-card {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        /* Habilidades (Tags) */
+        .tags-habilidades {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .tag-skill {
+            font-size: 0.6rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border: 1px solid rgba(255,255,255,0.1);
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .card-modelagem:hover .tag-skill {
+            border-color: #fff;
+            color: #fff;
+        }
+
+        /* Conteúdo Expansível */
+        .detalhes-atv {
+            max-height: 0;
+            overflow: hidden;
+            transition: 0.5s ease;
+            font-size: 0.9rem;
+            color: #aaa;
+            line-height: 1.6;
+        }
+
+        .card-modelagem.aberto .detalhes-atv {
+            max-height: 500px;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .btn-expandir {
+            margin-top: 20px;
+            background: none;
+            border: 1px solid rgba(255,255,255,0.1);
+            color: #fff;
+            padding: 10px;
+            width: 100%;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-expandir:hover { background: rgba(255,255,255,0.05); }
+
+         .status-sidebar { border-left: 2px solid #00ffcc; padding-left: 15px; margin-bottom: 20px; }
+        .info-item { margin-bottom: 15px; font-family: 'Rajdhani', sans-serif; }
+        .label { display: block; font-size: 0.7rem; color: #888; letter-spacing: 2px; }
+        .valor { font-size: 1.1rem; font-weight: bold; }
+
+        .contato-form { display: flex; flex-direction: column; gap: 15px; max-width: 500px; }
+        .input-group input, .input-group textarea {
+            width: 100%;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(0,255,204,0.2);
+            padding: 12px;
+            color: white;
+            font-family: 'Rajdhani', sans-serif;
+            outline: none;
+            transition: 0.3s;
+        }
+        .input-group input:focus, .input-group textarea:focus {
+            border-color: #00ffcc;
+            background: rgba(0,255,204,0.05);
+        }
+        .btn-enviar {
+            background: #00ffcc;
+            color: #000;
+            border: none;
+            padding: 15px;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: bold;
+            cursor: pointer;
+            letter-spacing: 2px;
+            transition: 0.3s;
+        }
+        .btn-enviar:hover { background: #fff; box-shadow: 0 0 20px #00ffcc; }
+
+        /* ESTRUTURA DOS CARDS DE MODELAGEM */
+.area-tecnica {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 140px 20px 80px;
+}
+
+.grade-atividades {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 25px;
+}
+
+.card-modelagem {
+    background: #312b38;
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: 0.4s;
+}
+
+.container-img {
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    background: #000;
+}
+
+.container-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.5;
+    transition: 0.4s;
+}
+
+.card-modelagem:hover .container-img img {
+    opacity: 1;
+}
+
+.info-card { padding: 25px; }
+
+/* HABILIDADES PADRÃO "H1-" */
+.tags-habilidades {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 15px 0;
+}
+
+.tag-skill {
+    font-size: 0.65rem;
+    font-weight: bold;
+    padding: 3px 10px;
+    border: 1px solid rgba(255,255,255,0.1);
+    color: #888;
+    text-transform: lowercase;
+}
+
+.card-modelagem:hover .tag-skill {
+    border-color: #fff;
+    color: #fff;
+}
+
+/* EXPANSÃO */
+.detalhes-atv {
+    max-height: 0;
+    overflow: hidden;
+    transition: 0.5s ease-in-out;
+    color: #aaa;
+    font-size: 0.9rem;
+}
+
+.card-modelagem.aberto .detalhes-atv {
+    max-height: 400px;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+ /* =========================================
+           CORREÇÃO DO BUG DO MOUSE E SCROLL
+           Garante que a página role e o mouse siga a tela
+        ========================================= */
+        body {
+            overflow-y: auto !important; 
+            min-height: 100vh;
+            height: auto !important;
+        }
+
+        #ponto, #rastro {
+            position: fixed !important; 
+            top: 0; left: 0;
+            pointer-events: none;
+            z-index: 999999 !important;
+        }
+
+        #ruido {
+            position: fixed !important;
+            pointer-events: none;
+        }
+
+        /* BRASÃO (MARCA D'ÁGUA) */
+        .marca-dagua-brasao {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50vw;
+            max-width: 600px;
+            opacity: 0.03;
+            z-index: -1;
+            pointer-events: none;
+        }
+        .brasao-svg { width: 100%; height: 100%; stroke: #fff; }
+
+        /* DICA DO EASTER EGG */
+        .dica-sistema {
+            position: absolute;
+            bottom: -25px;
+            left: 5px;
+            font-family: monospace;
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.15); /* Quase invisível */
+            letter-spacing: 2px;
+            animation: piscar-dica 3s infinite;
+            pointer-events: none;
+        }
+
+        @keyframes piscar-dica {
+            0%, 100% { opacity: 0.1; }
+            50% { opacity: 0.4; }
+        }
+
+        /* CARD SECRETO (EASTER EGG) */
+        #projeto-secreto {
+            display: none; 
+            border-color: #ff3333;
+            animation: glitch-reveal 0.5s forwards;
+        }
+        #projeto-secreto .titulo-card { color: #ff3333; }
+        #projeto-secreto .tag-skill { border-color: #ff3333; color: #ff3333; }
+        
+        @keyframes glitch-reveal {
+            0% { opacity: 0; transform: scale(0.9) skewX(20deg); filter: blur(5px); }
+            50% { opacity: 0.5; transform: scale(1.05) skewX(-10deg); filter: blur(2px); }
+            100% { opacity: 1; transform: scale(1) skewX(0); filter: blur(0); }
+        }
+
+        /* =========================================
+           EFEITOS DO EASTER EGG (SYSTEM OVERRIDE)
+        ========================================= */
+        body.override-ativo {
+            background-color: #050000 !important;
+        }
+
+        body.override-ativo .card-modelagem:not(#projeto-secreto) {
+            opacity: 0.1;
+            filter: grayscale(100%) blur(2px);
+            pointer-events: none; /* Desativa os cliques nos outros cartões */
+        }
+
+        body.override-ativo .barra-topo-status h1, 
+        body.override-ativo .tag-arquivo {
+            color: #ff3333;
+            text-shadow: 0 0 10px rgba(255,51,51,0.5);
+        }
+
+         /* CORREÇÃO DO BUG DO MOUSE E SCROLL */
+        body {
+            overflow-y: auto !important; 
+            min-height: 100vh;
+            height: auto !important;
+        }
+
+        #ponto, #rastro {
+            position: fixed !important; 
+            top: 0; left: 0;
+            pointer-events: none;
+            z-index: 999999 !important;
+        }
+
+        #ruido { position: fixed !important; pointer-events: none; }
+
+        /* BRASÃO (MARCA D'ÁGUA) */
+        .marca-dagua-brasao {
+            position: fixed; top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50vw; max-width: 600px;
+            opacity: 0.03; z-index: -1; pointer-events: none;
+        }
+        .brasao-svg { width: 100%; height: 100%; stroke: #fff; }
+
+        .dica-sistema {
+            position: absolute; bottom: -25px; left: 5px;
+            font-family: monospace; font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.15); letter-spacing: 2px;
+            animation: piscar-dica 3s infinite; pointer-events: none;
+        }
+
+        @keyframes piscar-dica {
+            0%, 100% { opacity: 0.1; }
+            50% { opacity: 0.4; }
+        }
+
+        /* EFEITOS DO EASTER EGG (SYSTEM OVERRIDE) */
+        body.override-ativo {
+            background-color: #050000 !important;
+        }
+
+        body.override-ativo .card-modelagem:not(#projeto-secreto) {
+            opacity: 0.1;
+            filter: grayscale(100%) blur(3px);
+            pointer-events: none; 
+        }
+
+        body.override-ativo .barra-topo-status h1, 
+        body.override-ativo .tag-arquivo {
+            color: #ff3333;
+            text-shadow: 0 0 10px rgba(255,51,51,0.5);
+        }
+
+        /* CARD SECRETO (EASTER EGG) */
+        #projeto-secreto {
+            display: none; 
+            border-color: #ff3333;
+            animation: glitch-reveal 0.5s forwards;
+            position: relative; /* Necessário para o botão fujão */
+        }
+        #projeto-secreto .titulo-card { color: #ff3333; }
+        #projeto-secreto .tag-skill { border-color: #ff3333; color: #ff3333; }
+        
+        @keyframes glitch-reveal {
+            0% { opacity: 0; transform: scale(0.9) skewX(20deg); filter: blur(5px); }
+            50% { opacity: 0.5; transform: scale(1.05) skewX(-10deg); filter: blur(2px); }
+            100% { opacity: 1; transform: scale(1) skewX(0); filter: blur(0); }
+        }
+
+        .texto-alerta-vermelho {
+            color: #ff3333;
+            font-family: monospace;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-top: 10px;
+            display: block;
+            animation: piscar-dica 0.5s infinite;
+        }
+
+        /* TELA AZUL DA MORTE (BSOD) */
+        #tela-azul {
+            display: none; position: fixed; top: 0; left: 0;
+            width: 100vw; height: 100vh; background-color: #0000aa;
+            color: #ffffff; font-family: 'Courier New', Courier, monospace;
+            z-index: 99999999; padding: 10vw; box-sizing: border-box;
+            cursor: default !important;
+        }
+        #tela-azul h2 { background: #fff; color: #0000aa; display: inline-block; padding: 2px 10px; font-size: 1.2rem; margin-bottom: 30px;}
+        #tela-azul p { font-size: 1.2rem; line-height: 1.8; margin-bottom: 20px;}
+
+        /* =========================================
+   MARCA D'ÁGUA (BRASÃO GERAL)
+========================================= */
+.marca-dagua-brasao {
+    position: fixed; 
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50vw; 
+    max-width: 600px;
+    opacity: 0.03; 
+    z-index: -1; 
+    pointer-events: none;
+}
+.brasao-svg { 
+    width: 100%; 
+    height: 100%; 
+    stroke: #fff; 
+}
+
+/* =========================================
+   EASTER EGG GERAL: DICA NO TOPO
+========================================= */
+.dica-sistema {
+    position: absolute; 
+    bottom: -25px; 
+    left: 5px;
+    font-family: monospace; 
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.15); 
+    letter-spacing: 2px;
+    animation: piscar-dica 3s infinite; 
+    pointer-events: none;
+}
+@keyframes piscar-dica { 
+    0%, 100% { opacity: 0.1; } 
+    50% { opacity: 0.4; } 
+}
+
+/* =========================================
+   EASTER EGG IOT (TERMINAL INTERATIVO)
+========================================= */
+#iot-terminal {
+    display: none;
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    background-color: rgba(0, 5, 0, 0.95);
+    z-index: 9999999;
+    color: #00ffcc;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 40px; box-sizing: border-box;
+    box-shadow: inset 0 0 100px rgba(0, 255, 204, 0.1);
+    overflow-y: auto; /* Permite rolar a tela se o texto ficar longo */
+}
+
+/* Esconde a barra de rolagem padrão mas mantém a funcionalidade */
+#iot-terminal::-webkit-scrollbar { width: 8px; }
+#iot-terminal::-webkit-scrollbar-track { background: rgba(0, 255, 204, 0.05); }
+#iot-terminal::-webkit-scrollbar-thumb { background: rgba(0, 255, 204, 0.3); }
+
+#iot-terminal::before {
+    content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 255, 204, 0.05) 2px, rgba(0, 255, 204, 0.05) 4px);
+    pointer-events: none;
+}
+
+.terminal-header {
+    border-bottom: 1px solid #00ffcc; padding-bottom: 10px; margin-bottom: 20px;
+    display: flex; justify-content: space-between;
+}
+
+.log-linha { margin: 5px 0; font-size: 1.1rem; text-shadow: 0 0 5px rgba(0, 255, 204, 0.5); line-height: 1.4; }
+.log-comando { color: #fff; margin-top: 15px; } /* Destaca o que o usuário digitou */
+.log-aviso { color: #ffcc00; text-shadow: 0 0 5px rgba(255, 204, 0, 0.5); }
+.log-critico { color: #ff3333; font-weight: bold; text-shadow: 0 0 10px rgba(255, 51, 51, 0.8); animation: piscar-critico 0.2s infinite; }
+
+@keyframes piscar-critico { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+
+#dados-sensores {
+    font-size: 2rem; margin: 20px 0; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; text-align: center;
+}
+.dado-caixa { border: 1px solid rgba(0, 255, 204, 0.3); padding: 20px; background: rgba(0, 255, 204, 0.05); }
+.dado-label { font-size: 0.8rem; opacity: 0.7; margin-bottom: 10px; display: block; letter-spacing: 2px;}
+
+/* Estilo da linha de comando interativa */
+#linha-comando {
+    display: flex; align-items: center; margin-top: 15px;
+}
+.prompt-simbolo {
+    margin-right: 10px; font-size: 1.2rem; font-weight: bold; animation: piscar-critico 1s infinite;
+}
+#terminal-input {
+    background: transparent; border: none; color: #00ffcc;
+    font-family: 'Courier New', Courier, monospace; font-size: 1.1rem;
+    outline: none; width: 100%; text-shadow: 0 0 5px rgba(0, 255, 204, 0.5);
+}
+
+@keyframes tremor {
+    0% { transform: translate(0, 0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+    100% { transform: translate(0, 0); }
+}
+.tremendo { animation: tremor 0.1s infinite; }
+
+/* COR DA INTELIGÊNCIA ARTIFICIAL (ÍCARO) NO TERMINAL */
+.log-icaro { 
+    color: #cc33ff; /* Roxo Neon */
+    font-weight: bold; 
+    text-shadow: 0 0 10px rgba(204, 51, 255, 0.8); 
+    letter-spacing: 1px;
+}
+
+
+
+/* =========================================
+   EASTER EGG BANCO DE DADOS (SQL TERMINAL UNIFICADO COM IOT)
+========================================= */
+#sql-terminal {
+    display: none;
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    background-color: rgba(0, 5, 0, 0.95); /* Mesmo fundo do IoT */
+    z-index: 9999999;
+    color: #00ffcc; /* Mesma cor do IoT */
+    font-family: 'Courier New', Courier, monospace;
+    padding: 40px; box-sizing: border-box;
+    box-shadow: inset 0 0 100px rgba(0, 255, 204, 0.1);
+    overflow-y: auto;
+}
+
+#sql-terminal::-webkit-scrollbar { width: 8px; }
+#sql-terminal::-webkit-scrollbar-track { background: rgba(0, 255, 204, 0.05); }
+#sql-terminal::-webkit-scrollbar-thumb { background: rgba(0, 255, 204, 0.3); }
+
+/* Mesmo grid de scanlines do IoT */
+#sql-terminal::before {
+    content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 255, 204, 0.05) 2px, rgba(0, 255, 204, 0.05) 4px);
+    pointer-events: none;
+}
+
+.sql-header {
+    border-bottom: 1px solid #00ffcc; padding-bottom: 10px; margin-bottom: 20px;
+    display: flex; justify-content: space-between;
+}
+
+.sql-linha { margin: 5px 0; font-size: 1.1rem; text-shadow: 0 0 5px rgba(0, 255, 204, 0.5); line-height: 1.4;}
+.sql-tabela { 
+    margin: 15px 0; border-collapse: collapse; width: 100%; max-width: 800px;
+    color: #fff; font-size: 1rem;
+}
+.sql-tabela th, .sql-tabela td {
+    border: 1px solid #00ffcc; padding: 8px 15px; text-align: left;
+}
+.sql-tabela th { background: rgba(0, 255, 204, 0.1); color: #00ffcc; }
+
+.sql-prompt-container { display: flex; align-items: center; margin-top: 20px; }
+.sql-prompt { margin-right: 10px; font-weight: bold; color: #fff; }
+#sql-input {
+    background: transparent; border: none; color: #00ffcc;
+    font-family: 'Courier New', Courier, monospace; font-size: 1.1rem;
+    outline: none; width: 100%; text-shadow: 0 0 5px rgba(0, 255, 204, 0.5);
+}
+
+.sql-alerta { color: #ff3333; font-weight: bold; text-shadow: 0 0 10px rgba(255, 51, 51, 0.8); }
+.sql-dump { color: #00ffcc; font-size: 0.85rem; line-height: 1.1; opacity: 0.7;}
+
+/* =========================================
+   EASTER EGG DESENVOLVIMENTO (IDE VS CODE STYLE)
+========================================= */
+#ide-container {
+    display: none;
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    background-color: #1e1e1e; /* Cor clássica do VS Code */
+    z-index: 9999999;
+    color: #cccccc;
+    font-family: 'Consolas', 'Courier New', monospace;
+    box-sizing: border-box;
+    display: flex; flex-direction: column;
+}
+
+.ide-header {
+    background-color: #323233; color: #969696;
+    padding: 10px 20px; font-size: 0.85rem;
+    display: flex; justify-content: space-between;
+    border-bottom: 1px solid #1e1e1e;
+}
+
+.ide-layout {
+    display: flex; flex: 1; overflow: hidden;
+}
+
+.ide-sidebar {
+    width: 200px; background-color: #252526;
+    padding: 15px; border-right: 1px solid #1e1e1e;
+}
+
+.ide-sidebar-title {
+    font-size: 0.75rem; font-weight: bold; color: #bbbbbb;
+    letter-spacing: 1px; margin-bottom: 15px;
+}
+
+.ide-file {
+    font-size: 0.9rem; margin-bottom: 8px; cursor: pointer !important;
+    display: flex; align-items: center; gap: 8px;
+}
+.ide-file.active { color: #519aba; font-weight: bold; }
+
+.ide-main {
+    flex: 1; display: flex; flex-direction: column;
+}
+
+.ide-code-area {
+    flex: 2; padding: 20px; overflow-y: auto;
+    font-size: 1.1rem; line-height: 1.5; white-space: pre-wrap;
+}
+
+/* Cores de Sintaxe (Syntax Highlighting Simulado) */
+.sy-keyword { color: #569cd6; font-weight: bold; }
+.sy-string { color: #ce9178; }
+.sy-comment { color: #6a9955; font-style: italic; }
+.sy-function { color: #dcdcaa; }
+.sy-class { color: #4ec9b0; }
+
+.ide-terminal-area {
+    flex: 1; background-color: #1e1e1e; border-top: 1px solid #3c3c3c;
+    padding: 15px; overflow-y: auto; display: flex; flex-direction: column;
+}
+
+.ide-term-header { font-size: 0.8rem; color: #e7e7e7; margin-bottom: 10px; border-bottom: 1px solid #3c3c3c; padding-bottom: 5px;}
+.ide-term-log { margin-bottom: 5px; font-size: 0.95rem; }
+.ide-term-warning { color: #cca700; }
+.ide-term-error { color: #f48771; font-weight: bold; }
+
+.ide-prompt-row { display: flex; align-items: center; margin-top: 10px; }
+.ide-prompt-symbol { color: #519aba; margin-right: 10px; }
+#ide-input {
+    background: transparent; border: none; color: #cccccc;
+    font-family: inherit; font-size: 1rem; width: 100%; outline: none;
+}
+
+/* =========================================
+   EFEITOS DE GAME OVER (FALHA NA IDE)
+========================================= */
+@keyframes ide-glitch {
+    0% { transform: translate(0) }
+    20% { transform: translate(-3px, 3px) }
+    40% { transform: translate(-3px, -3px) }
+    60% { transform: translate(3px, 3px) }
+    80% { transform: translate(3px, -3px) }
+    100% { transform: translate(0) }
+}
+
+.ide-falha-critica {
+    animation: ide-glitch 0.3s infinite;
+    background-color: #220000 !important; /* Fundo vermelho escuro */
+}
+
+.ide-falha-critica * {
+    color: #ff3333 !important; /* Tudo fica vermelho sangue */
+    border-color: #ff3333 !important;
+}
