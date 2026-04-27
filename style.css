@@ -2446,3 +2446,61 @@ body.falha-catastrofica .cabecalho-pagina {
     50% { opacity: 1; }
     100% { transform: translateY(15px); opacity: 0; }
 }
+
+/* =========================================
+   CORREÇÃO DO BUG: FORÇAR ELEMENTOS UM EM CIMA DO OUTRO
+   ========================================= */
+
+/* Força a área principal da página a empilhar os itens verticalmente */
+
+/* Garante que o container do vídeo não deixe nada ficar do lado dele */
+.visualizacao-projeto {
+    display: flex;
+    flex-direction: column !important;
+    align-items: center !important;
+    width: 100%;
+}
+
+/* Centraliza o brasão do easter egg e dá um espaço entre ele e o vídeo */
+.marca-dagua-brasao {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px !important; /* Desgruda o brasão do vídeo */
+    width: 100%;
+    text-align: center;
+}
+
+/* =========================================
+   CORREÇÃO DEFINITIVA DO VÍDEO (16:9)
+   ========================================= */
+
+/* Limita a largura máxima da área inteira do projeto */
+.visualizacao-projeto {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    width: 100% !important;
+    max-width: 800px !important; /* Tamanho limite do vídeo */
+    margin: 0 auto !important; /* Centra no ecrã */
+}
+
+/* O "truque" para forçar a proporção perfeita do YouTube */
+.visualizacao-projeto .area-embed {
+    position: relative !important;
+    width: 100% !important;
+    height: 0 !important;
+    padding-bottom: 56.25% !important; /* Proporção 16:9 mágica */
+    margin: 20px 0 !important;
+    overflow: hidden !important;
+}
+
+/* O vídeo adapta-se perfeitamente à caixa anterior */
+.visualizacao-projeto .area-embed iframe {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    border: none !important;
+}
