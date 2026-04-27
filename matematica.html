@@ -111,65 +111,43 @@
             <section class="atividades-conteudo">
                 
                 <div class="trimestre-painel ativo" id="tri-1">
-                    <h3 class="titulo-secao">Lógica e Dados</h3>
+                    <h3 class="titulo-secao">Atividades</h3>
                     <div class="lista-atividades">
-                        <div class="atividade-card link-mag">
+                        <div class="atividade-card link-mag" data-modal="modal-1">
                             <div class="card-info">
-                                <span class="materia-tag">Estatística</span>
-                                <h4>Análise de Dados</h4>
-                                <p>Coleta, interpretação e construção de gráficos estatísticos avançados.</p>
-                                <ul class="habilidades-hidden" style="display: none;">
-                                    <li>Levantamento de dados brutos</li>
-                                    <li>Criação de gráficos informativos</li>
-                                    <li>Compreensão de probabilidade</li>
-                                </ul>
+                                <span class="materia-tag">Probabilidade</span>
+                                <h4>Atividade Quebrando a banca</h4>
+                                <p>A atividade teve como objetivo analisar o filme *Quebrando a Banca* relacionando-o com conceitos matemáticos, principalmente probabilidade e estatística. Ao responder as questões, identifiquei como o uso da contagem de cartas envolve raciocínio lógico e previsão de resultados. Também refleti sobre como a matemática pode ser aplicada em situações reais e até em roteiros de filmes. Isso me ajudou a perceber a utilidade da probabilidade no dia a dia de forma mais prática.</p>
                             </div>
                             <div class="card-thumb">
-                                <img src="https://via.placeholder.com/150/2b2b33/00ffcc?text=Math" alt="Thumb">
+                                <img src="/Photos/quebrando.png" alt="Thumb">
+                            </div>
+                        </div>
+
+                        <div class="atividade-card link-mag" data-modal="modal-2">
+                            <div class="card-info">
+                                <span class="materia-tag">Probabilidade</span>
+                                <h4>Criando a Banca da Matemática</h4>
+                                <p>A atividade teve como objetivo criar um jogo utilizando conceitos de análise combinatória e probabilidade. Meu grupo desenvolveu um jogo inspirado no War, com temática de Star Wars, aplicando estratégias baseadas em chances e contagem. Durante a criação e testes, consegui entender melhor como a probabilidade influencia decisões e resultados. Isso ajudou a ver a matemática de forma mais prática e aplicada.</p>
+                            </div>
+                            <div class="card-thumb">
+                                <img src="/Photos/war.png" alt="Thumb">
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="trimestre-painel" id="tri-2">
-                    <h3 class="titulo-secao">Espaço e Formas</h3>
+               <div class="trimestre-painel" id="tri-2">
+                    <h3 class="titulo-secao">Atividades</h3>
                     <div class="lista-atividades">
-                        <div class="atividade-card link-mag">
-                            <div class="card-info">
-                                <span class="materia-tag">Geometria</span>
-                                <h4>Projetos e Arquitetura</h4>
-                                <p>Aplicação de cálculo de áreas e volumes em espaços tridimensionais físicos.</p>
-                                <ul class="habilidades-hidden" style="display: none;">
-                                    <li>Cálculo de volume e área espacial</li>
-                                    <li>Geometria plana e analítica</li>
-                                    <li>Projeções matemáticas</li>
-                                </ul>
-                            </div>
-                            <div class="card-thumb">
-                                <img src="https://via.placeholder.com/150/2b2b33/00ffcc?text=Geo" alt="Thumb">
-                            </div>
-                        </div>
+                        <p class="texto-intro" style="font-style: italic;">Atividades do 2º trimestre ainda não iniciadas...</p>
                     </div>
                 </div>
 
                 <div class="trimestre-painel" id="tri-3">
-                    <h3 class="titulo-secao">Aplicações Práticas</h3>
+                    <h3 class="titulo-secao">Atividades</h3>
                     <div class="lista-atividades">
-                        <div class="atividade-card link-mag">
-                            <div class="card-info">
-                                <span class="materia-tag">Finanças</span>
-                                <h4>Matemática Financeira</h4>
-                                <p>Planejamento econômico, cálculo de juros e matemática no mundo real.</p>
-                                <ul class="habilidades-hidden" style="display: none;">
-                                    <li>Cálculo de juros compostos</li>
-                                    <li>Educação financeira</li>
-                                    <li>Resolução de equações complexas</li>
-                                </ul>
-                            </div>
-                            <div class="card-thumb">
-                                <img src="https://via.placeholder.com/150/2b2b33/00ffcc?text=Fin" alt="Thumb">
-                            </div>
-                        </div>
+                        <p class="texto-intro" style="font-style: italic;">Atividades do 3º trimestre ainda não iniciadas...</p>
                     </div>
                 </div>
 
@@ -177,7 +155,7 @@
         </div>
     </main>
 
-    <div class="modal-atividade" id="modal-atividade">
+    <div class="modal-atividade" id="modal-1">
         <button class="btn-fechar link-mag" id="btn-fechar-modal">
             <svg viewBox="0 0 100 100" width="40" height="40">
                 <line x1="20" y1="20" x2="80" y2="80" stroke="#b8b8d1" stroke-width="4" stroke-linecap="round"/>
@@ -188,18 +166,55 @@
         <div class="modal-conteudo">
             <div class="modal-imagem">
                 <div class="img-placeholder">
-                    <span>Espaço para a Foto ou PDF da Atividade</span>
+                    <span><iframe src="https://docs.google.com/document/d/19wvdq1Ir4ORYG4QBFOC0_CIy7qcxpyJ2ORNwWio_Z7M/edit?usp=sharing" frameborder="0"></iframe></span>
                 </div>
             </div>
             
             <div class="modal-textos">
-                <span class="materia-tag">Tag</span>
-                <h2 class="titulo-modal">Título</h2>
-                <p class="desc-modal">Descrição detalhada</p>
+                <span class="materia-tag">Probabilidade</span>
+                <h2 class="titulo-modal">Atividade Quebrando a banca</h2>
+                <p class="desc-modal">A atividade teve como objetivo analisar o filme *Quebrando a Banca* relacionando-o com conceitos matemáticos, principalmente probabilidade e estatística. Ao responder as questões, identifiquei como o uso da contagem de cartas envolve raciocínio lógico e previsão de resultados. Também refleti sobre como a matemática pode ser aplicada em situações reais e até em roteiros de filmes. Isso me ajudou a perceber a utilidade da probabilidade no dia a dia de forma mais prática.</p>
                 
                 <h4 class="habilidades-titulo">Habilidades</h4>
                 <ul class="habilidades-lista" id="lista-habilidades-modal">
+                    <li>C5: Aplicar o pensamento probabilístico para quantificar e fazer previsões em situações aplicadas a diferentes áreas do conhecimento e da vida cotidiana.</li>
+                    <li>H30: Identificar dados, regularidades e relações numa situação que envolva o raciocínio combinatório, utilizando os processos de contagem.</li>
+                    <li>H31: Reconhecer fenômenos e eventos (naturais, científicos, tecnológicos e/ou  sociais) de caráter aleatório, compreendendo o significado e a importância da  probabilidade como meio de prever resultados.</li>
                 </ul>
+                <a href="https://docs.google.com/document/d/19wvdq1Ir4ORYG4QBFOC0_CIy7qcxpyJ2ORNwWio_Z7M/edit?usp=sharing" target="_blank" class="btn-abrir-externo">ABRIR</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal-atividade" id="modal-2">
+        <button class="btn-fechar link-mag" id="btn-fechar-modal">
+            <svg viewBox="0 0 100 100" width="40" height="40">
+                <line x1="20" y1="20" x2="80" y2="80" stroke="#b8b8d1" stroke-width="4" stroke-linecap="round"/>
+                <line x1="80" y1="20" x2="20" y2="80" stroke="#b8b8d1" stroke-width="4" stroke-linecap="round"/>
+            </svg>
+        </button>
+
+        <div class="modal-conteudo">
+            <div class="modal-imagem">
+                <div class="img-placeholder" style="height: 400px;">
+                    <span>
+                    <iframe loading="lazy" src="https://www.canva.com/design/DAHHq2I-uX4/P__BXht6Fycf4WfJD792Vg/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen"> </iframe></span>
+                </div>
+            </div>
+            
+            <div class="modal-textos">
+                <span class="materia-tag">Probabilidade</span>
+                <h2 class="titulo-modal">Criando a Banca da Matemática</h2>
+                <p class="desc-modal">A atividade teve como objetivo criar um jogo utilizando conceitos de análise combinatória e probabilidade. Meu grupo desenvolveu um jogo inspirado no War, com temática de Star Wars, aplicando estratégias baseadas em chances e contagem. Durante a criação e testes, consegui entender melhor como a probabilidade influencia decisões e resultados. Isso ajudou a ver a matemática de forma mais prática e aplicada.</p>
+                
+                <h4 class="habilidades-titulo">Habilidades</h4>
+                <ul class="habilidades-lista" id="lista-habilidades-modal">
+                    <li>C5: Aplicar o pensamento probabilístico para quantificar e fazer previsões em situações aplicadas a diferentes áreas do conhecimento e da vida cotidiana.</li>
+                    <li>H30: Identificar dados, regularidades e relações numa situação que envolva o raciocínio combinatório, utilizando os processos de contagem.</li>
+                    <li>H31: Reconhecer fenômenos e eventos (naturais, científicos, tecnológicos e/ou  sociais) de caráter aleatório, compreendendo o significado e a importância da  probabilidade como meio de prever resultados.</li>
+                </ul>
+                <a href="https://canva.link/nbo4g194f8qu963" target="_blank" class="btn-abrir-externo">ABRIR</a>
             </div>
         </div>
     </div>
@@ -317,46 +332,39 @@
     });
 
     // =========================================
-    // 2. MODAL DE ATIVIDADES 
+    // 2. MODAL DE MÚLTIPLAS ATIVIDADES
     // =========================================
-    const modalAtividade = document.getElementById('modal-atividade');
-    const btnFecharModal = document.getElementById('btn-fechar-modal');
+    const cardsAtividade = document.querySelectorAll('.atividade-card');
+    const botoesFechar = document.querySelectorAll('.btn-fechar');
+    const todosModais = document.querySelectorAll('.modal-atividade');
 
-    document.querySelectorAll('.atividade-card').forEach(card => {
+    // Lógica para ABRIR clicando no Card inteiro
+    cardsAtividade.forEach(card => {
         card.addEventListener('click', () => {
-            const tag = card.querySelector('.materia-tag')?.innerText || 'ATIVIDADE';
-            const titulo = card.querySelector('h4')?.innerText || 'Sem Título';
-            const desc = card.querySelector('p')?.innerText || 'Sem descrição.';
-            const habs = card.querySelector('.habilidades-hidden')?.innerHTML || '<li>Habilidades não especificadas.</li>';
-
-            if (modalAtividade) {
-                const tagEl = modalAtividade.querySelector('.materia-tag');
-                const titEl = modalAtividade.querySelector('.titulo-modal');
-                const descEl = modalAtividade.querySelector('.desc-modal');
-                const habsEl = modalAtividade.querySelector('.habilidades-lista');
-                
-                if(tagEl) tagEl.innerText = tag;
-                if(titEl) titEl.innerText = titulo;
-                if(descEl) descEl.innerText = desc;
-                if(habsEl) habsEl.innerHTML = habs; 
-                
-                modalAtividade.classList.add('visivel');
+            const modalId = card.getAttribute('data-modal');
+            if (modalId) {
+                const modalCorreto = document.getElementById(modalId);
+                if (modalCorreto) modalCorreto.classList.add('visivel');
             }
         });
     });
 
-    if (btnFecharModal) {
-        btnFecharModal.addEventListener('click', () => {
-            modalAtividade.classList.remove('visivel');
+    // Lógica para FECHAR clicando no X
+    botoesFechar.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const modal = btn.closest('.modal-atividade');
+            if (modal) modal.classList.remove('visivel');
         });
-    }
-    if (modalAtividade) {
-        modalAtividade.addEventListener('click', (e) => {
-            if (e.target === modalAtividade) {
-                modalAtividade.classList.remove('visivel');
+    });
+
+    // Lógica para FECHAR clicando no fundo escuro fora do modal
+    todosModais.forEach(modal => {
+        modal.addEventListener('click', (e) => {
+            if(e.target === modal) {
+                modal.classList.remove('visivel');
             }
         });
-    }
+    });
 
     // =========================================
     // 3. SCI-FI OVERDRIVE: MATEMÁTICA (PI)

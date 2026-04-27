@@ -2028,3 +2028,421 @@ body.falha-catastrofica .cabecalho-pagina {
     color: #ff3333 !important; /* Tudo fica vermelho sangue */
     border-color: #ff3333 !important;
 }
+
+/* =========================================
+   TRUQUE DE ESCALA PARA O PADLET (IFRAME)
+========================================= */
+.container-img {
+    position: relative;
+    width: 100%;
+    height: 200px !important; /* Altura fixa do quadro */
+    background: #000;
+    overflow: hidden !important; 
+}
+
+.container-img iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+    /* 1. Engana o Padlet dobrando o tamanho dele */
+    width: 200% !important;
+    height: 400px !important; 
+    
+    /* 2. Encolhe o Padlet pela metade para caber no quadro (zoom out) */
+    transform: scale(0.5);
+    transform-origin: top left;
+    
+    border: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    opacity: 0.6;
+    transition: opacity 0.4s ease;
+    
+    /* Bloqueia o scroll dentro do Padlet para não atrapalhar a página */
+    pointer-events: none; 
+}
+
+.card-modelagem:hover .container-img iframe {
+    opacity: 1;
+    /* Permite mexer no Padlet apenas quando o mouse está em cima do card */
+    pointer-events: auto; 
+}
+
+/* =========================================
+   TRUQUE DO PADLET DENTRO DO MODAL
+========================================= */
+.modal-imagem .img-placeholder {
+    position: relative;
+    width: 100%;
+    height: 100%; 
+    min-height: 400px; /* Garante que a área escura tenha um bom tamanho */
+    overflow: hidden !important;
+    background-color: #1a1a1a;
+}
+
+.modal-imagem .img-placeholder iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+    /* 1. Finge para o Padlet que a tela é 2.5x maior (Modo PC) */
+    width: 250% !important;
+    height: 250% !important;
+    
+    /* 2. Encolhe o Padlet de volta para caber no modal (Zoom out) */
+    transform: scale(0.4);
+    transform-origin: top left;
+    
+    border: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* =========================================
+   BOTÃO DE ABRIR ATIVIDADE EXTERNA
+========================================= */
+.btn-abrir-externo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 25px; /* Dá um respiro da lista de cima */
+    padding: 12px 24px;
+    background-color: transparent;
+    color: #b8b8d1; /* Cor clara do seu tema */
+    border: 1px solid rgba(184, 184, 209, 0.4);
+    border-radius: 4px;
+    font-family: 'Rajdhani', monospace, sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-abrir-externo:hover {
+    background-color: #b8b8d1;
+    color: #121212; /* Fundo escuro do portfólio */
+    border-color: #b8b8d1;
+    box-shadow: 0 0 15px rgba(184, 184, 209, 0.3);
+    transform: translateY(-2px); /* Dá uma leve "levantada" no botão */
+}
+
+/* =========================================
+   PÁGINA DE MODELAGEM - TERMINAL DE PROJETO (CORES CORRIGIDAS)
+   ========================================= */
+
+.container-projeto-unico {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+    animation: fadeIn 1s ease-out;
+    margin-bottom: 50px;
+}
+
+.terminal-atividade {
+    background: rgba(18, 18, 22, 0.85); /* Fundo um pouco mais escuro que o padrão do site */
+    border: 1px solid rgba(184, 184, 209, 0.3); /* Cor da borda padrão do site */
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+    position: relative;
+    backdrop-filter: blur(10px);
+}
+
+.topo-terminal {
+    background: rgba(184, 184, 209, 0.05);
+    padding: 12px 20px;
+    border-bottom: 1px solid rgba(184, 184, 209, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Rajdhani', sans-serif;
+    letter-spacing: 1px;
+    color: #b8b8d1;
+}
+
+/* Ponto pulsante agora é um branco/prata sutil */
+.status-dot {
+    width: 10px;
+    height: 10px;
+    background: #ffffff;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 8px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    animation: pulseStatus 2s infinite;
+}
+
+@keyframes pulseStatus {
+    0% { box-shadow: 0 0 0px rgba(255, 255, 255, 0.5); }
+    50% { box-shadow: 0 0 12px rgba(255, 255, 255, 0.8); }
+    100% { box-shadow: 0 0 0px rgba(255, 255, 255, 0.5); }
+}
+
+.conteudo-projeto {
+    padding: 40px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+}
+
+@media (min-width: 992px) {
+    .conteudo-projeto {
+        grid-template-columns: 450px 1fr;
+    }
+}
+
+.texto-projeto h2 {
+    font-family: 'Rajdhani', sans-serif;
+    color: #ffffff; /* Título em branco para destaque */
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.descricao-longa {
+    color: #b8b8d1; /* Cor de texto padrão do seu site */
+    line-height: 1.7;
+    font-size: 1.05rem;
+    margin-bottom: 30px;
+    text-align: justify;
+}
+
+.area-embed {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; 
+    background: #000;
+    border: 1px solid rgba(184, 184, 209, 0.2);
+    border-radius: 4px;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Botão seguindo o padrão dos outros modais */
+.btn-link-canva {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    background-color: transparent;
+    color: #b8b8d1;
+    border: 1px solid rgba(184, 184, 209, 0.4);
+    border-radius: 4px;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 600;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.btn-link-canva:hover {
+    background-color: rgba(184, 184, 209, 0.1);
+    color: #ffffff;
+    border-color: rgba(184, 184, 209, 0.8);
+    transform: translateY(-2px);
+}
+
+.tags-tecnicas {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+}
+
+.tag-tech {
+    background: rgba(184, 184, 209, 0.05);
+    padding: 5px 14px;
+    border-radius: 3px;
+    font-size: 0.85rem;
+    color: #b8b8d1;
+    border: 1px solid rgba(184, 184, 209, 0.2);
+    font-family: 'Rajdhani', sans-serif;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+#projeto-secreto {
+    display: none; 
+    margin-top: 60px;
+    border-color: #ff3333;
+}
+
+/* =========================================
+   FILTRO E TAMANHO DO INCORPORAR (CANVA / IMAGENS)
+   ========================================= */
+.area-embed iframe,
+.area-embed img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    object-fit: cover;
+    
+    filter: grayscale(100%) brightness(0.8) contrast(1.1) sepia(20%) hue-rotate(200deg);
+    transition: filter 0.6s ease, transform 0.6s ease, opacity 0.6s ease;
+    opacity: 0.8;
+}
+
+/* FALTAVA O :hover NO IMG AQUI NESTA LINHA ABAIXO */
+.area-embed:hover iframe,
+.area-embed:hover img {
+    filter: grayscale(0%) brightness(1) contrast(1) sepia(0%) hue-rotate(0deg);
+    opacity: 1;
+}
+
+/* Efeito de brilho na borda ao passar o mouse */
+.area-embed {
+    transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.area-embed:hover {
+    border-color: rgba(184, 184, 209, 0.6);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+}
+
+/* =========================================
+   LOGO DA ATIVIDADE (MODELAGEM)
+   ========================================= */
+.logo-atividade-box {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    background: rgba(184, 184, 209, 0.03);
+    border-radius: 4px;
+    border-left: 2px solid rgba(184, 184, 209, 0.2);
+}
+
+.logo-svg-atv {
+    width: 40px;
+    height: 40px;
+    stroke: #b8b8d1;
+    fill: none;
+    stroke-width: 1.5;
+}
+
+.logo-info-texto {
+    font-family: 'Rajdhani', sans-serif;
+}
+
+.logo-info-texto .cod-auth {
+    display: block;
+    font-size: 0.7rem;
+    color: #b8b8d1;
+    opacity: 0.5;
+    letter-spacing: 2px;
+}
+
+.logo-info-texto .nome-auth {
+    font-size: 0.9rem;
+    color: #b8b8d1;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+/* =========================================
+   VISUALIZAÇÃO DE PROJETOS E EMBEDS
+   ========================================= */
+.visualizacao-projeto {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.area-embed {
+    position: relative;
+    width: 100%;
+    max-width: 800px; /* Limite máximo de largura (não deixa ficar gigante) */
+    height: 450px;    /* Altura travada */
+    border: 1px solid rgba(184, 184, 209, 0.2);
+    border-radius: 8px;
+    background: #0f0f13; /* Fundo simulando uma tela desligada */
+    overflow: hidden;
+    transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.area-embed:hover {
+    border-color: rgba(184, 184, 209, 0.6);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.area-embed iframe,
+.area-embed img {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; 
+    height: 100%;
+    object-fit: contain !important; /* Força a imagem a caber inteira dentro da caixa */
+    padding: 10px; /* Dá um respiro para não encostar nas bordas */
+    
+    /* Filtros para manter a estética */
+    filter: grayscale(100%) brightness(0.8) contrast(1.1) sepia(20%) hue-rotate(200deg);
+    transition: filter 0.6s ease, transform 0.6s ease;
+    opacity: 0.8;
+}
+
+.area-embed:hover iframe,
+.area-embed:hover img {
+    filter: grayscale(0%) brightness(1) contrast(1) sepia(0%) hue-rotate(0deg);
+    opacity: 1;
+}
+
+/* Mensagem Piscante do Easter Egg */
+.instrucao-hacker {
+    text-align: center;
+    font-family: 'Rajdhani', sans-serif;
+    color: #ff3333;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    margin-top: 20px;
+    animation: piscar-alerta 1.5s infinite;
+}
+
+@keyframes piscar-alerta {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.2; }
+}
+
+/* Estilização do Indicador de Rolar */
+.scroll-indicator {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 50px 0;
+    gap: 10px;
+}
+
+.scroll-indicator span {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.7rem;
+    color: rgba(184, 184, 209, 0.5);
+    letter-spacing: 3px;
+}
+
+.seta-hacker {
+    width: 2px;
+    height: 30px;
+    background: linear-gradient(to bottom, rgba(0, 255, 204, 0.5), transparent);
+    position: relative;
+    animation: scroll-anim 2s infinite;
+}
+
+@keyframes scroll-anim {
+    0% { transform: translateY(0); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: translateY(15px); opacity: 0; }
+}

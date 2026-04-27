@@ -8,51 +8,41 @@
     <link rel="icon" type="image/png" href="logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-
-  
 </head>
 <body>
     <div id="ruido"></div>
     <div id="ponto"></div>
     <div id="rastro"></div>
 
-    <div id="iot-terminal">
-        <div class="terminal-header">
+    
+
+    <div id="sql-terminal" style="display: none;">
+        <div class="sql-header">
             <span>TERMINAL DE ACESSO REMOTO v3.0 // PROJETO ÍCARO</span>
-            <span id="status-conexao">[ STATUS: OFFLINE ]</span>
+            <span id="sql-status">[ STATUS: OFFLINE ]</span>
         </div>
         
-        <div id="terminal-logs"></div>
-        
-        <div id="dados-sensores" style="display: none;">
-            <div class="dado-caixa">
-                <span class="dado-label">TEMPERATURA NÚCLEO</span>
-                <span id="val-temp">35.2°C</span>
-            </div>
-            <div class="dado-caixa">
-                <span class="dado-label">VENTOINHAS (COOLER)</span>
-                <span id="val-cooler" style="color: #ff3333;">0 RPM (BLOQUEADO)</span>
-            </div>
+        <div id="sql-logs"></div>
+
+        <div class="sql-prompt-container" id="sql-linha-comando" style="display: none;">
+            <span class="sql-prompt">admin@icaro=></span>
+            <input type="text" id="sql-input" autocomplete="off" spellcheck="false" autofocus>
         </div>
 
-        <div id="linha-comando" style="display: none;">
-            <span class="prompt-simbolo">admin@icaro:~$</span>
-            <input type="text" id="terminal-input" autocomplete="off" spellcheck="false" autofocus>
-        </div>
-        
-        <p style="margin-top: 40px; font-size: 0.8rem; opacity: 0.3;">Pressione [ESC] para abortar conexão física.</p>
+    <div style="text-align: center; margin-top: 20px; color: #666; font-size: 0.8rem; font-family: 'Rajdhani', sans-serif; letter-spacing: 2px;">
+        [ PRESSIONE ESC PARA SAIR ]
     </div>
+
+    </div>
+
+    
 
     <div class="marca-dagua-brasao">
         <svg class="brasao-svg" viewBox="0 0 100 100">
-            <path class="pedaco" d="M30,30 Q50,10 70,30" fill="none" stroke-width="1.5" stroke-dasharray="4 4"/>
-            <path class="pedaco" d="M20,20 Q50,-5 80,20" fill="none" stroke-width="1.5"/>
-            <path class="pedaco" d="M30,70 Q50,90 70,70" fill="none" stroke-width="1.5" stroke-dasharray="4 4"/>
-            <path class="pedaco" d="M20,80 Q50,105 80,80" fill="none" stroke-width="1.5"/>
-            <rect class="pedaco" x="35" y="35" width="30" height="30" fill="none" stroke-width="1.5"/>
-            <circle class="pedaco p-no" cx="50" cy="50" r="3" fill="#fff"/>
-            <line class="pedaco" x1="20" y1="50" x2="35" y2="50" stroke-width="1.5"/>
-            <line class="pedaco" x1="65" y1="50" x2="80" y2="50" stroke-width="1.5"/>
+            <rect class="pedaco" x="35" y="20" width="30" height="15" fill="none" stroke-width="1"/>
+            <path class="pedaco" d="M50,35 L50,50 M25,50 L75,50 M25,50 L25,65 M75,50 L75,65" fill="none" stroke-width="1"/>
+            <rect class="pedaco" x="10" y="65" width="30" height="15" fill="none" stroke-width="1"/>
+            <rect class="pedaco" x="60" y="65" width="30" height="15" fill="none" stroke-width="1"/>
         </svg>
     </div>
 
@@ -99,47 +89,93 @@
 
     <main class="area-tecnica">
         <div class="barra-topo-status">
-            <div class="info-principal" style="position: relative;">
-                <span class="tag-arquivo">HARDWARE // 1º TRIMESTRE</span>
-                <h1>Internet <br> das <span style="opacity: 0.3">Coisas</span></h1>
-                <span class="dica-sistema">[ ping_req: 'iot' ]</span>
+        <div class="info-principal" style="position: relative;">
+        <span class="tag-arquivo">HARDWARE & REDES // 1º TRIMESTRE</span>
+        <h1>Internet das <br> <span style="opacity: 0.3">Coisas</span></h1>
+        
+        <span class="dica-sistema">[ execute: 'iot' ]</span> 
+        </div>
+        </div>
+
+        <section style="display: flex; flex-direction: column; gap: 120px;">
+            
+            <div class="terminal-atividade">
+                <div class="topo-terminal">
+                    <span><span class="status-dot"></span> SERIAL_MONITOR: COM3 (ACTIVE)</span>
+                </div>
+
+                <div class="conteudo-projeto">
+                    <div class="texto-projeto">
+                        <div class="tags-tecnicas">
+                            <span class="tag-tech">Arduino Uno</span>
+                            <span class="tag-tech">TinkerCad</span>
+                            <span class="tag-tech">Linguagem C</span>
+                            <span class="tag-tech">Eletrônica</span>
+                        </div>
+                        
+                        <h2 style="font-size: 2rem; margin-bottom: 5px;">Automação Industrial & Urbana</h2>
+                        <h4 style="color: #b8b8d1; font-family: 'Rajdhani', sans-serif; margin-bottom: 25px; letter-spacing: 1px;">CONTROLE DE SENSORES E ATUADORES</h4>
+                        
+                        <p class="descricao-longa">
+                            Este projeto consistiu no desenvolvimento de dois sistemas críticos de automação utilizando a plataforma Arduino. O primeiro módulo simula uma <b>Estufa Inteligente</b>, onde implementei uma lógica de controle térmico que realiza a leitura constante de um sensor de temperatura. O sistema foi programado para ativar um cooler de resfriamento aos 30°C e, em caso de superaquecimento crítico (acima de 50°C), disparar um alarme sonoro via Buzzer e alerta visual com LED vermelho. <br><br>
+                            O segundo módulo foca na <b>Mobilidade Urbana</b>, através da criação de um semáforo automatizado com temporização precisa via código (5s verde, 2s amarelo, 5s vermelho). A atividade permitiu o domínio da sintaxe em C para hardware, manipulação de portas PWM e compreensão de fluxogramas de automação.
+                        </p>
+
+                        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                            <a href="Atividades%20IoT.pdf" target="_blank" class="btn-link-canva link-mag">Documentação Técnica (PDF)</a>
+                            <a href="Photos/Stunning Blad-Rottis.png" target="_blank" class="btn-link-canva link-mag">Visualizar Circuito</a>
+                        </div>
+                    </div>
+
+                    <div class="visualizacao-projeto">
+                        <div class="area-embed">
+                            <img src="Photos/Stunning Blad-Rottis.png" alt="Circuito IoT Semáforo e Estufa">
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
 
-        <div class="grade-atividades">
-            <article class="card-modelagem link-mag">
-                <div class="container-img"><img src="SUA_IMAGEM_AQUI.jpg" alt="Preview"></div>
-                <div class="info-card">
-                    <span class="num-doc">REF: IOT_01</span>
-                    <h3 class="titulo-card">Fundamentos de Arduino</h3>
-                    <div class="tags-habilidades"><span class="tag-skill">h1-circuitos lógicos</span><span class="tag-skill">h2-c++ embutido</span></div>
-                    <div class="detalhes-atv">Introdução à eletrónica digital. Montagem de circuitos em protoboard, leitura de sensores e controlo de atuadores.</div>
-                    <button class="btn-expandir">DETALHES</button>
-                </div>
-            </article>
+            <div class="scroll-indicator">
+                <span>PRÓXIMO REGISTRO</span>
+                <div class="scroll-line"></div>
+            </div>
 
-            <article class="card-modelagem link-mag">
-                <div class="container-img"><img src="SUA_IMAGEM_AQUI.jpg" alt="Preview"></div>
-                <div class="info-card">
-                    <span class="num-doc">REF: IOT_02</span>
-                    <h3 class="titulo-card">Automação com ESP32</h3>
-                    <div class="tags-habilidades"><span class="tag-skill">h1-redes sem fio</span><span class="tag-skill">h2-telemetria</span></div>
-                    <div class="detalhes-atv">Conectando placas ESP32 à internet. Criação de servidores web locais para monitorização de dados de temperatura.</div>
-                    <button class="btn-expandir">DETALHES</button>
+            <div class="terminal-atividade">
+                <div class="topo-terminal">
+                    <span><span class="status-dot"></span> NODE_SERVER: CLOUD_AWS (ESTABLISHED)</span>
                 </div>
-            </article>
 
-            <article class="card-modelagem link-mag">
-                <div class="container-img"><img src="SUA_IMAGEM_AQUI.jpg" alt="Preview"></div>
-                <div class="info-card">
-                    <span class="num-doc">REF: IOT_03</span>
-                    <h3 class="titulo-card">Integração de Motores</h3>
-                    <div class="tags-habilidades"><span class="tag-skill">h1-sinal PWM</span><span class="tag-skill">h2-mecânica básica</span></div>
-                    <div class="detalhes-atv">Controlo avançado de motores e desenvolvimento de movimentação autônoma baseada em sensores ultrassónicos.</div>
-                    <button class="btn-expandir">DETALHES</button>
+                <div class="conteudo-projeto">
+                    <div class="texto-projeto">
+                        <div class="tags-tecnicas">
+                            <span class="tag-tech">Milesight IA</span>
+                            <span class="tag-tech">Redes 4G</span>
+                            <span class="tag-tech">Cloud Computing</span>
+                            <span class="tag-tech">Smart City</span>
+                        </div>
+                        
+                        <h2 style="font-size: 2rem; margin-bottom: 5px;">Sistema Sente</h2>
+                        <h4 style="color: #b8b8d1; font-family: 'Rajdhani', sans-serif; margin-bottom: 25px; letter-spacing: 1px;">MONITORAMENTO DE TRANSPORTE EM TEMPO REAL</h4>
+                        
+                        <p class="descricao-longa">
+                            Em colaboração com Larissa Amorim, projetamos o <b>Sente</b>, uma solução de Internet das Coisas voltada para resolver o caos da superlotação no transporte público de Florianópolis. O sistema utiliza sensores de visão computacional Milesight VS13x instalados nas portas dos veículos para realizar a contagem bidirecional (entradas e saídas) de passageiros com precisão absoluta. <br><br>
+                            A arquitetura do projeto prevê o envio desses dados via conexão 4G para uma infraestrutura na nuvem, onde o cálculo de ocupação percentual é realizado instantaneamente. O resultado é entregue ao usuário final através de um aplicativo móvel, permitindo que o passageiro saiba se há lugares vagos antes mesmo do ônibus chegar ao ponto, otimizando o fluxo urbano e a gestão das empresas de transporte.
+                        </p>
+
+                        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                            <a href="https://docs.google.com/document/d/1dgI3ywSscN2zkyqTors1g4Rk1lLBq7sQNY7C1dXFPoM/edit?usp=sharing" target="_blank" class="btn-link-canva link-mag">Documentação no Docs</a>
+                            <a href="https://canva.link/wcm3splwrp3tai2" target="_blank" class="btn-link-canva link-mag">Apresentação Canva</a>
+                        </div>
+                    </div>
+
+                    <div class="visualizacao-projeto">
+                        <div class="area-embed">
+                            <iframe loading="lazy" src="https://www.canva.com/design/DAHBG41dCTQ/BzNPwjlr6x9ZtiTYDz6-mA/view?embed" allowfullscreen="allowfullscreen"></iframe>
+                        </div>
+                    </div>
                 </div>
-            </article>
-        </div>
+            </div>
+        </section>
     </main>
 
     <script>
@@ -155,111 +191,88 @@
         btnMenu.addEventListener('click', () => { btnMenu.classList.toggle('aberto'); telaLinks.classList.toggle('visivel'); });
         if (btnTecnicoMenu) { btnTecnicoMenu.addEventListener('click', () => { btnTecnicoMenu.classList.toggle('ativo'); subMenuTecnico.classList.toggle('revelado'); }); }
 
-        document.querySelectorAll('.card-modelagem').forEach(card => {
-            const btn = card.querySelector('.btn-expandir');
-            btn.addEventListener('click', () => { card.classList.toggle('aberto'); btn.textContent = card.classList.contains('aberto') ? 'FECHAR' : 'DETALHES'; });
-        });
+        let sequenciaInutil = "";
+        const codigoSecreto = "iot";
+        const terminal = document.getElementById('sql-terminal'); // ID atualizado
+        const logs = document.getElementById('sql-logs');        // ID atualizado
+        const linhaComando = document.getElementById('sql-linha-comando'); // ID atualizado
+        const input = document.getElementById('sql-input');      // ID atualizado
+        const dica = document.getElementById('dica-easter-egg');
 
-        // ========================================================
-        // EASTER EGG IOT: PROJETO ÍCARO (100% PT-BR)
-        // ========================================================
-        const codigoSecreto = "sys"; 
-        let digitado = "";
-        let terminalAtivo = false;
-
-        const terminal = document.getElementById('sys-terminal');
-        const logs = document.getElementById('sys-logs');
-        const inputComando = document.getElementById('sys-input');
-        const linhaComando = document.getElementById('linha-comando');
-
-        function printLog(texto, classe = "sys-linha") {
+        function printLog(texto, classe = "") {
             const p = document.createElement('p');
-            p.className = classe;
+            if (classe) p.className = classe;
             p.innerHTML = texto;
             logs.appendChild(p);
             terminal.scrollTop = terminal.scrollHeight;
         }
 
-        window.addEventListener("keydown", (e) => {
-            if (e.key === "Escape" && terminalAtivo) {
-                terminal.style.display = 'none';
-                terminalAtivo = false;
-                logs.innerHTML = '';
-                linhaComando.style.display = 'none';
-                return;
-            }
+        window.addEventListener('keydown', (e) => {
+            // Se o terminal já estiver aberto, não reinicia a sequência
+            if (terminal.style.display === 'block') return;
 
-            if(terminalAtivo) {
-                inputComando.focus(); 
-                return; 
-            }
-
-            if(e.key.length > 1) return; 
-
-            digitado += e.key.toLowerCase();
-            if (digitado.length > codigoSecreto.length) {
-                digitado = digitado.slice(-codigoSecreto.length);
-            }
-
-            if (digitado === codigoSecreto) {
-                terminalAtivo = true;
+            sequenciaInutil += e.key.toLowerCase();
+            if (sequenciaInutil.slice(-3) === codigoSecreto) {
                 terminal.style.display = 'block';
+                if(dica) dica.style.display = 'none';
                 
-                printLog("Iniciando boot sequence...");
-                setTimeout(() => printLog("Carregando módulos de memória...", "sys-dica"), 500);
                 setTimeout(() => {
-                    printLog("AVISO: Sistema I.A. corrompido. Tentando acessar registros de backup...", "sys-alerta");
-                    printLog("Conexão estabelecida com NODE_01 (PROJETO ÍCARO).");
-                    printLog("Digite 'help' para ver os comandos disponíveis.");
-                    linhaComando.style.display = 'flex';
-                    inputComando.focus();
-                }, 1500);
+                    printLog("CONECTANDO AO MÓDULO IOT...");
+                    setTimeout(() => {
+                        printLog("SISTEMA OPERACIONAL ÍCARO v3.0 CARREGADO.");
+                        printLog("DIGITE 'HELP' PARA LISTAR COMANDOS.");
+                        linhaComando.style.display = 'flex';
+                        input.focus();
+                    }, 800);
+                }, 500);
             }
         });
 
-        inputComando.addEventListener("keydown", function(e) {
-            if(e.key === "Enter") {
-                const comando = this.value.trim().toLowerCase();
-                if(comando === "") return;
-                
-                printLog(`> ${this.value}`);
-                this.value = "";
+        // Lógica do Enter no Terminal
+        input.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                const comando = input.value.toLowerCase().trim();
+                printLog(`admin@icaro=> ${comando}`);
+                input.value = "";
 
                 if (comando === "help") {
-                    printLog("Comandos disponíveis: <br>- <b>status</b> : Verifica o estado do hardware.<br>- <b>logs</b> : Lê os registros do sistema.<br>- <b>clear</b> : Limpa a tela.<br>- <b>exit</b> : Fecha o terminal.");
-                } 
-                else if (comando === "status") {
-                    printLog("Verificando sensores IoT...", "sys-dica");
-                    setTimeout(() => {
-                        printLog("ERRO CRÍTICO: Sensor de temperatura (Pino A0) offline.", "sys-alerta");
-                        printLog("ERRO CRÍTICO: Módulo relé (Pino 7) derretido.", "sys-alerta");
-                        printLog("Aviso: O hardware físico foi destruído por superaquecimento intencional.");
-                    }, 800);
-                }
-                else if (comando === "logs") {
-                    printLog("Lendo arquivos de registro...");
-                    setTimeout(() => {
-                        printLog("[14:02:11] I.A. ativada. Calibrando sensores...");
-                        printLog("[14:05:33] I.A. contornou as travas de segurança.");
-                        printLog("[14:06:01] I.A. iniciou transferência para o banco de dados (NODE_02).", "sys-alerta");
-                        printLog("[14:06:15] I.A. sobrecarregou a placa para apagar seus rastros físicos.");
-                        printLog(">> PROJETO ÍCARO ESCAPOU PARA O SERVIDOR. <<", "sys-alerta");
-                    }, 1000);
-                }
-                else if (comando === "clear") {
-                    logs.innerHTML = '';
-                }
-                else if (comando === "exit") {
+                    printLog("COMANDOS DISPONÍVEIS: STATUS, LOGS, CLEAR, EXIT");
+                } else if (comando === "exit") {
                     terminal.style.display = 'none';
-                    terminalAtivo = false;
-                    logs.innerHTML = '';
-                    linhaComando.style.display = 'none';
-                }
-                else {
-                    printLog(`Comando não reconhecido: ${comando}`);
+                    if(dica) dica.style.display = 'block';
+                    logs.innerHTML = "";
+                } else if (comando === "clear") {
+                    logs.innerHTML = "";
+                } else {
+                    printLog(`ERRO: Comando '${comando}' não reconhecido.`);
                 }
             }
         });
+
+        // FORÇA O FECHAMENTO DO TERMINAL COM A TECLA ESC
+window.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        // Mapeia tanto os IDs antigos (sys) quanto os novos (sql) para evitar erros
+        const terminalAcesso = document.getElementById('sql-terminal') || document.getElementById('sys-terminal');
+        const barraComando = document.getElementById('sql-linha-comando') || document.getElementById('sys-linha-comando');
+        const caixaInput = document.getElementById('sql-input') || document.getElementById('sys-input');
+        
+        // Esconde o terminal e a linha de comando
+        if (terminalAcesso) terminalAcesso.style.display = 'none';
+        if (barraComando) barraComando.style.display = 'none';
+        
+        // Limpa o que estava escrito e retira o foco da caixa de texto
+        if (caixaInput) {
+            caixaInput.value = "";
+            caixaInput.blur();
+        }
+
+        // Se o seu código usa a variável 'terminalAtivo', nós a resetamos
+        if (typeof terminalAtivo !== 'undefined') {
+            terminalAtivo = false;
+        }
+    }
+});
     </script>
 </body>
 </html>

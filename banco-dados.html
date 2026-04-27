@@ -89,40 +89,55 @@
             </div>
         </div>
 
-        <div class="grade-atividades">
-            <article class="card-modelagem link-mag">
-            <div class="container-img"><img src="SUA_IMAGEM_AQUI.jpg" alt="Preview SQL"></div>
-            <div class="info-card">
-                <span class="num-doc">REF: DB_02</span>
-                <h3 class="titulo-card">Linguagem SQL (DDL e DML)</h3>
-                <div class="tags-habilidades"><span class="tag-skill">h1-scripts sql</span><span class="tag-skill">h2-operações crud</span></div>
-                <div class="detalhes-atv">Criação física das tabelas no SGBD utilizando comandos DDL. Manipulação e inserção de registros com comandos DML.</div>
-                <button class="btn-expandir">DETALHES</button>
+        <section class="container-projeto-unico">
+            <div class="terminal-atividade">
+                <div class="topo-terminal">
+                    <span><span class="status-dot"></span> DATALINK_GP_SENAI.EXE</span>
+                    <span style="font-family: monospace; font-size: 0.8rem; opacity: 0.5;">ID: VALE_DESAFIO_2026</span>
+                </div>
+
+                <div class="conteudo-projeto">
+                    <div class="texto-projeto">
+                        <div class="tags-tecnicas">
+                            <span class="tag-tech">Roteirização em Tempo Real</span>
+                            <span class="tag-tech">Logística</span>
+                            <span class="tag-tech">Automação de Processos</span>
+                            <span class="tag-tech">Lean Canvas</span>
+                        </div>
+                        
+                        <h2 style="font-size: 1.8rem; margin-bottom: 5px;">Grand Prix SENAI 2026</h2>
+                        <h4 style="color: #b8b8d1; font-family: 'Rajdhani', sans-serif; margin-bottom: 25px; letter-spacing: 1px;">INOVAÇÃO EM ROTEIRIZAÇÃO E LOGÍSTICA</h4>
+                        
+                        <div style="background: rgba(184, 184, 209, 0.05); border-left: 3px solid rgba(184, 184, 209, 0.6); padding: 15px; margin-bottom: 25px; border-radius: 0 4px 4px 0;">
+                            <span style="display: block; font-family: 'Rajdhani'; color: rgba(184, 184, 209, 0.8); font-weight: bold; margin-bottom: 8px; font-size: 0.8rem; letter-spacing: 2px;">[ QUERY DO PROBLEMA: DESAFIO VALE ]</span>
+                            <p style="font-size: 0.95rem; color: #b8b8d1; font-style: italic; line-height: 1.5; margin: 0;">
+                                "Como podemos melhorar a roteirização em tempo real para tornar inteligente a conexão entre os veículos operacionais e as equipes de campo nos deslocamentos em toda área operacional do Porto Ponta da Madeira, aumentando a eficiência logística e reduzindo dependência de processos manuais e comunicação informal?"
+                            </p>
+                        </div>
+
+                        <p class="descricao-longa">
+                            Nesta atividade, participei do Grand Prix SENAI 2026 com a equipe <strong>Café, Caos e Confusão</strong>, desenvolvendo uma solução tecnológica e de banco de dados para o desafio proposto pela mineradora Vale. <br><br>
+                            Trabalhamos com conceitos de inovação aberta, automação de processos, logística estruturada e uso de tecnologia para otimizar o roteamento de veículos. A elaboração envolveu Lean Canvas, prototipação e a criação de um Pitch focado em viabilidade e eficiência. A experiência reproduziu a dinâmica real do mercado, conectando arquitetura da informação à resolução de problemas operacionais críticos.
+                        </p>
+
+                        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                            <a href="https://canva.link/tpvruvvilddjk7k" target="_blank" class="btn-link-canva link-mag">Apresentação Canva</a>
+                            <a href="https://grandprix.decocms.com/gp-senai-2026#submissions" target="_blank" class="btn-link-canva link-mag" style="border-color: rgba(184, 184, 209, 0.3);">Página Oficial GP</a>
+                        </div>
+                    </div>
+
+                    <div class="visualizacao-projeto">
+                
+                        
+                        <div class="area-embed">
+                            <iframe loading="lazy" src="https://www.youtube.com/embed/2o7PK2cXa60?si=HGihmjRS_iZrJHbZ" title="Pitch Grand Prix SENAI 2026" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        </div>
+
+                
+                    </div>
+                </div>
             </div>
-        </article>
-
-            <article class="card-modelagem link-mag">
-                <div class="container-img"><img src="SUA_IMAGEM_AQUI.jpg" alt="Preview SQL"></div>
-                <div class="info-card">
-                    <span class="num-doc">REF: DB_02</span>
-                    <h3 class="titulo-card">Linguagem SQL (DDL e DML)</h3>
-                    <div class="tags-habilidades"><span class="tag-skill">h1-scripts sql</span><span class="tag-skill">h2-operações crud</span></div>
-                    <div class="detalhes-atv">Criação física das tabelas no SGBD utilizando comandos DDL. Manipulação e inserção de registos com comandos DML.</div>
-                    <button class="btn-expandir">DETALHES</button>
-                </div>
-            </article>
-
-            <article class="card-modelagem link-mag">
-                <div class="container-img"><img src="SUA_IMAGEM_AQUI.jpg" alt="Preview JOIN"></div>
-                <div class="info-card">
-                    <span class="num-doc">REF: DB_03</span>
-                    <h3 class="titulo-card">Consultas Avançadas</h3>
-                    <div class="tags-habilidades"><span class="tag-skill">h1-inner join</span><span class="tag-skill">h2-subqueries</span></div>
-                    <div class="detalhes-atv">Extração de relatórios complexos cruzando dados de múltiplas tabelas simultaneamente através de JOINs e funções de agregação.</div>
-                    <button class="btn-expandir">DETALHES</button>
-                </div>
-            </article>
-        </div>
+        </section>
     </main>
 
     <script>
@@ -138,13 +153,8 @@
         btnMenu.addEventListener('click', () => { btnMenu.classList.toggle('aberto'); telaLinks.classList.toggle('visivel'); });
         if (btnTecnicoMenu) { btnTecnicoMenu.addEventListener('click', () => { btnTecnicoMenu.classList.toggle('ativo'); subMenuTecnico.classList.toggle('revelado'); }); }
 
-        document.querySelectorAll('.card-modelagem').forEach(card => {
-            const btn = card.querySelector('.btn-expandir');
-            btn.addEventListener('click', () => { card.classList.toggle('aberto'); btn.textContent = card.classList.contains('aberto') ? 'FECHAR' : 'DETALHES'; });
-        });
-
         // ========================================================
-        // EASTER EGG BD: TERMINAL SQL (LIGADO AO IOT)
+        // EASTER EGG BD: TERMINAL SQL
         // ========================================================
         const codigoDb = "sql"; 
         let digitado = "";
