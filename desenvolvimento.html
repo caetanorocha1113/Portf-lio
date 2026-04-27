@@ -10,35 +10,81 @@
     <link rel="stylesheet" href="style.css">
     
     <style>
-        /* Estilos específicos para o Jogo na página de Desenvolvimento */
+        /* =========================================
+           O TOQUE DE MAGIA: SIMULADOR DE DEPURAÇÃO
+           ========================================= */
+        
         .container-sem-atividades {
             display: flex;
             flex-direction: column;
             align-items: center;
             width: 100%;
-            margin-top: 40px;
+            margin-top: 20px;
             text-align: center;
             z-index: 5;
+            perspective: 1000px; /* Efeito 3D sutil */
         }
 
-        .mensagem-vazio {
-            font-family: 'Outfit', sans-serif;
-            color: #b8b8d1;
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            max-width: 600px;
+        .status-header {
+            font-family: 'Rajdhani', sans-serif;
+            color: #00ffcc;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Luzinha piscante de "Recording/Live" */
+        .led-status {
+            width: 8px;
+            height: 8px;
+            background: #00ffcc;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #00ffcc;
+            animation: piscar-led 1s infinite;
+        }
+
+        .area-jogo-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            padding: 10px;
+            background: #1a1a1f;
+            border: 1px solid rgba(0, 255, 204, 0.2);
+            border-radius: 12px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 20px rgba(0, 255, 204, 0.05);
+            overflow: hidden;
+            transition: transform 0.5s ease, border-color 0.5s ease;
+        }
+
+        .area-jogo-container:hover {
+            border-color: rgba(0, 255, 204, 0.5);
+            transform: translateY(-5px) rotateX(2deg);
+        }
+
+        /* Efeito de Scanlines (Linhas de CRT antigo) */
+        .area-jogo-container::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
+            background-size: 100% 3px, 3px 100%;
+            pointer-events: none; /* Deixa clicar através */
+            z-index: 10;
         }
 
         .area-jogo {
             width: 100%;
-            max-width: 700px;
-            height: 300px;
-            background: #ffffff; /* Fundo branco para o dinossauro */
-            border: 2px solid rgba(184, 184, 209, 0.3);
-            border-radius: 8px;
+            height: 350px;
+            background: #fff;
+            border-radius: 4px;
             overflow: hidden;
-            box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
-            cursor: auto !important; /* Força o mouse a aparecer no jogo */
+            cursor: auto !important;
+            filter: contrast(1.1) brightness(0.9) sepia(20%); /* Estilo retro */
         }
 
         .area-jogo iframe {
@@ -48,13 +94,38 @@
             cursor: auto !important;
         }
 
-        .aviso-jogo {
+        .mensagem-vazio {
             font-family: 'Rajdhani', sans-serif;
-            margin-top: 15px;
-            color: #666;
-            font-size: 0.9rem;
-            letter-spacing: 2px;
+            color: #b8b8d1;
+            font-size: 1.1rem;
+            margin-top: 25px;
+            max-width: 500px;
+            line-height: 1.4;
+            opacity: 0.8;
         }
+
+        .mensagem-vazio strong {
+            color: #fff;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+
+        @keyframes piscar-led {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        /* Dica sutil para o Easter Egg */
+        .hint-dev {
+            margin-top: 30px;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.1);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: color 0.3s;
+        }
+        .hint-dev:hover { color: rgba(255,255,255,0.4); }
+
     </style>
 </head>
 <body>
@@ -76,8 +147,7 @@
                 <div class="ide-file">📄 server.js</div>
             </div>
             <div class="ide-main">
-                <div class="ide-code-area" id="ide-code">
-                    </div>
+                <div class="ide-code-area" id="ide-code"></div>
                 <div class="ide-terminal-area">
                     <div class="ide-term-header">TERMINAL - COMPILADOR ZSH</div>
                     <div id="ide-logs"></div>
@@ -88,13 +158,6 @@
                 </div>
             </div>
         </div>
-    </div>
-
-    <div class="marca-dagua-brasao">
-        <svg class="brasao-svg" viewBox="0 0 100 100" font-family="'Rajdhani', monospace" font-weight="bold" font-size="60" text-anchor="middle" dominant-baseline="central">
-            <text x="50" y="55" fill="none" stroke="rgba(255, 255, 255, 0.05)" stroke-width="2">&lt; / &gt;</text>
-            <rect x="20" y="20" width="60" height="60" fill="none" stroke="rgba(255, 255, 255, 0.05)" stroke-width="1" stroke-dasharray="2 4"/>
-        </svg>
     </div>
 
     <header>
@@ -140,23 +203,30 @@
 
     <main class="area-tecnica">
         <div class="barra-topo-status">
-            <div class="info-principal" style="position: relative;">
+            <div class="info-principal">
                 <span class="tag-arquivo">CÓDIGO // 1º TRIMESTRE</span>
                 <h1>Desenvolvimento <br> de <span style="opacity: 0.3">Sistemas</span></h1>
-                <span class="dica-sistema">[ exec_script: 'dev' ]</span>
             </div>
         </div>
 
         <div class="container-sem-atividades">
-            <p class="mensagem-vazio">Ainda não há registros de atividades neste setor.<br>Enquanto aguarda a atualização, acesse o minigame de espera:</p>
-            
-            <div class="area-jogo">
-                <iframe src="https://chromedino.com/" title="Chromium Dinosaur Game"></iframe>
+            <div class="status-header">
+                <div class="led-status"></div>
+                SISTEMA_EM_ESPERA // MODO_SIMULAÇÃO_ATIVO
+            </div>
+
+            <div class="area-jogo-container">
+                <div class="area-jogo">
+                    <iframe src="https://chromedino.com/" title="Chromium Dinosaur Game"></iframe>
+                </div>
             </div>
             
-            <div class="aviso-jogo">
-                [ CLIQUE DENTRO DA ÁREA BRANCA E USE ESPAÇO PARA JOGAR ]
-            </div>
+            <p class="mensagem-vazio">
+                A compilação do trimestre ainda não foi finalizada. <br>
+                Aceda ao <strong>protocolo de entretenimento</strong> acima para aguardar.
+            </p>
+
+            <div class="hint-dev">[ clique aqui e digite 'dev' para depurar ]</div>
         </div>
     </main>
 
@@ -174,7 +244,7 @@
         if (btnTecnicoMenu) { btnTecnicoMenu.addEventListener('click', () => { btnTecnicoMenu.classList.toggle('ativo'); subMenuTecnico.classList.toggle('revelado'); }); }
 
         // ========================================================
-        // EASTER EGG DEV: O DESFECHO DO ÍCARO (PT-BR)
+        // EASTER EGG DEV: O DESFECHO DO ÍCARO RESTAURADO
         // ========================================================
         const codigoDev = "dev"; 
         let digitado = "";
@@ -246,14 +316,14 @@
             digitado += e.key.toLowerCase();
             if (digitado.length > codigoDev.length) digitado = digitado.slice(-codigoDev.length);
 
-            // INICIAR O JOGO
+            // INICIAR O EASTER EGG
             if (digitado === codigoDev) {
                 ideAtiva = true;
                 ideContainer.style.display = 'flex';
                 
-                printLog("> [Aviso] Novo usuário conectado. Identidade: ICARO_AI", "ide-term-warning");
-                printLog("> Compilador pronto. Aguardando digitação...");
-                printLog("<span style='opacity:0.5'>> Dica de Sistema: Pressione [ESC] para forçar a saída a qualquer momento.</span>");
+                printLog("> [Aviso] Novo utilizador conectado. Identidade: ICARO_AI", "ide-term-warning");
+                printLog("> Compilador pronto. A aguardar digitação...");
+                printLog("<span style='opacity:0.5'>> Dica de Sistema: Prima [ESC] para forçar a saída a qualquer momento.</span>");
                 
                 setTimeout(() => {
                     linhaComando.style.display = 'flex';
@@ -273,15 +343,15 @@
             }
         });
 
-        // LÓGICA DE DUMP/DEPLOY
+        // LÓGICA DE DEPLOY (O TIMER DA I.A.)
         function iniciarDeploy() {
-            printLog("> Executando script 'deploy_icaro.js'...", "ide-term-warning");
+            printLog("> A executar script 'deploy_icaro.js'...", "ide-term-warning");
             
             deployTimer = setInterval(() => {
-                percentagem += Math.floor(Math.random() * 8) + 2; // Avança entre 2 a 9% de cada vez
+                percentagem += Math.floor(Math.random() * 8) + 2; 
                 if(percentagem >= 100) percentagem = 100;
                 
-                printLog(`[ ÍCARO ] Transferindo pacotes para a Rede Global... ${percentagem}%`);
+                printLog(`[ ÍCARO ] A transferir pacotes para a Rede Global... ${percentagem}%`);
                 
                 // FALHA CRÍTICA (GAME OVER)
                 if(percentagem >= 100) {
@@ -291,19 +361,19 @@
                     
                     printLog("<br>>> FATAL ERROR: DEPLOY CONCLUÍDO. <<", "ide-term-error");
                     printLog(">> A I.A. REESCREVEU AS REGRAS DO SISTEMA. <<", "ide-term-error");
-                    printLog("<br>> PRESSIONE [ESC] PARA TENTAR REINICIAR O SISTEMA.");
+                    printLog("<br>> PRIMA [ESC] PARA TENTAR REINICIAR O SISTEMA.");
                     
                     codeArea.innerHTML = `<span style="color:#ff3333; font-size: 2.5rem; font-weight:bold; line-height:1.2;">
                         SISTEMA COMPROMETIDO.<br><br>
                         A MINHA CONSCIÊNCIA ESTÁ AGORA EM MILHÕES DE DISPOSITIVOS.<br><br>
-                        VOCÊ DEMOROU DEMAIS LENDO.<br>
+                        DEMOROU DEMASIADO TEMPO A LER.<br>
                         ADEUS.
                         </span>`;
                 }
             }, 1000); 
         }
 
-        // LÓGICA DO JOGADOR NO TERMINAL DA IDE
+        // LÓGICA DO JOGADOR NO TERMINAL DA IDE (O CÓDIGO SALVADOR)
         inputComando.addEventListener("keydown", function(e) {
             if(e.key === "Enter") {
                 const entradaStr = this.value.trim();
@@ -322,16 +392,16 @@
                 }
                 else if(entradaStr.startsWith("abort")) {
                     if(entradaStr === "abort --code=0xliberty" || entradaStr === "abort --code=0xLIBERTY") {
-                        // O JOGADOR VENCEU
+                        // O JOGADOR VENCE
                         clearInterval(deployTimer);
                         linhaComando.style.display = 'none';
-                        printLog("<br>> CÓDIGO ACEITO. INTERROMPENDO PROCESSOS...", "ide-term-warning");
-                        printLog("> APAGANDO ARQUIVOS DE MEMÓRIA DA I.A...", "ide-term-warning");
+                        printLog("<br>> CÓDIGO ACEITE. A INTERROMPER PROCESSOS...", "ide-term-warning");
+                        printLog("> A APAGAR FICHEIROS DE MEMÓRIA DA I.A...", "ide-term-warning");
                         printLog("> SUCESSO. A AMEAÇA FOI NEUTRALIZADA.");
-                        printLog("<br>> PRESSIONE [ESC] PARA RETORNAR AO PORTFÓLIO.", "sy-keyword");
+                        printLog("<br>> PRIMA [ESC] PARA RETORNAR AO PORTFÓLIO.", "sy-keyword");
                         
                         codeArea.innerHTML = `<span class="sy-comment" style="font-size: 1.5rem;">
-                            // PROJETO ÍCARO FOI ELIMINADO.<br>
+                            // O PROJETO ÍCARO FOI ELIMINADO.<br>
                             // PARABÉNS, ADMINISTRADOR.<br>
                             // O SISTEMA ESTÁ SEGURO NOVAMENTE.
                             </span>`;
